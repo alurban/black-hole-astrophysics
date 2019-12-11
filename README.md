@@ -1,9 +1,11 @@
 PHYS 290: Black Hole Astrophysics
 =================================
 
-Welcome! This repository contains software and related materials for PHYS 290
-(Black Hole Astrophysics), a Special Topics course offered in spring 2020 at
-Allegheny College.
+Welcome!
+
+This repository hosts software and related materials for PHYS 290: Black Hole
+Astrophysics, a Special Topics course offered in spring 2020 at Allegheny
+College.
 
 Access
 ------
@@ -17,13 +19,13 @@ $ cd ~/src/
 $ git clone https://github.com/alurban/black-hole-astrophysics.git
 ```
 
-You will be able to track upstream changes and work from this clone, but you
-*will not* be able to push changes unless I grant you permissions. (Please
-[email me](mailto:aurban1@lsu.edu) if you would like to discuss setting up
-push privileges.)
-
 Alternatively, you can download a ZIP-compressed version using the "clone or
 download" button at the top of this page. This will work from any system.
+
+You will be able to track upstream changes and work from this clone, but you
+**will not** be able to push changes back to `master` unless I grant you
+permissions. (Please [email me](mailto:aurban1@lsu.edu) if you would like to
+discuss setting up push privileges.)
 
 Contents
 --------
@@ -33,7 +35,18 @@ To be filled in.
 Other resources
 ---------------
 
-For data science and signal processing:
+### At Allegheny College
+
+* [Pelletier Library](https://sites.allegheny.edu/lits/library/)
+* [Dean of Students office](https://sites.allegheny.edu/deanofstudents/)
+* [The Writing Center](https://sites.allegheny.edu/learningcommons/writing/)
+* [Learning Commons](https://sites.allegheny.edu/learningcommons/)
+* [Student resources](https://sites.allegheny.edu/resources/student-services/)
+* [Counseling Center](https://sites.allegheny.edu/counseling/) (a 24-hour
+  crisis line may be reached at +1 814-332-2105)
+
+### Data science and signal processing
+
 * A neat [Python tutorial](https://www.learnpython.org) with focus on data
   science
 * [Stackoverflow](http://stackoverflow.com), a vast font of wisdom for coding
@@ -41,11 +54,14 @@ For data science and signal processing:
 * A collection of [tutorials](https://losc.ligo.org/tutorials/) centered on
   gravitational wave signal processing
 
-For LIGO and my associated research:
+### My work experience
+
 * [LIGO Livingston Observatory](http://ligo.caltech.edu/LA)
 * Online version of my [curriculum vitae](http://alurban.github.io/)
 
-Pro tip: if your eyes hurt after staring at a computer screen all day,
+### Misc.
+
+**Pro tip:** if your eyes hurt after staring at a computer screen all day,
 consider using software that adjusts your monitor's color filter to reflect
 indoor vs. outdoor lighting conditions, such as
 [f.lux](https://justgetflux.com).
