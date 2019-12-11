@@ -274,3 +274,13 @@ TSWLatexianTemp*
 
 # Makeindex log files
 *.lpz
+
+## Core Python aux files
+.DS_store
+*.pyc
+/*.patch
+.nfs*
+*.swp
+/.cache/
+/.eggs/
+/*.egg
