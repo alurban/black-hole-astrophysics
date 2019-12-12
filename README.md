@@ -32,6 +32,7 @@ Contents
 
 This repository contains the following materials:
 
+* [Course website](https://alurban.github.io/black-hole-astrophysics/)
 * [Installation guide](INSTALL.md) for the `black-hole-3.7` conda environment
 
 Other resources
