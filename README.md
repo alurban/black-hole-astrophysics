@@ -1,7 +1,7 @@
 PHYS 290: Black Hole Astrophysics
 =================================
 
-Welcome!
+Welcome, black hole mechanics!
 
 This repository hosts software and related materials for PHYS 290: Black Hole
 Astrophysics, a Special Topics course offered in spring 2020 at Allegheny
@@ -66,5 +66,5 @@ consider using software that adjusts your monitor's color filter to reflect
 indoor vs. outdoor lighting conditions, such as
 [f.lux](https://justgetflux.com).
 
-Finally, if you're feeling overwhelmed, take a break from science with this
-[random cute animal generator](https://attackofthecute.com/random.php).
+Finally, if you're feeling overwhelmed, take a break from science with
+[this random cute animal generator](https://attackofthecute.com/random.php)!
