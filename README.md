@@ -68,3 +68,11 @@ indoor vs. outdoor lighting conditions, such as
 
 Finally, if you're feeling overwhelmed, take a break from science with
 [this random cute animal generator](https://attackofthecute.com/random.php)!
+
+Legalese
+--------
+
+Software and materials in this repository are provided under the terms of the
+[MIT License][LICENSE]. Strictly speaking, you are free to modify, distribute,
+and use this software for any purpose (with appropriate citation) with the
+understanding that it comes "as-is" and has no warranty.
