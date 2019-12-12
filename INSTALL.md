@@ -5,7 +5,7 @@ Introduction
 ------------
 
 **Note:** All software used for this course is open source, meaning it is
-distributed free of charge and well-supported for wide use.
+distributed free of charge and is well-supported for wide use.
 
 To study black hole dynamics, we will frequently find it useful to do
 numerical simulations, which inevitably require learning to write software.
@@ -46,8 +46,8 @@ $ ./bh-conda-env create
 **Note:** You may need to run this with `sudo` on your computer due to user
 permissions.
 
-This command builds a recipe called `black-hole-3.7`, which you can activate
-via
+This command builds an environment called `black-hole-3.7`, which you can
+activate via
 
 ```bash
 $ conda activate black-hole-3.7
