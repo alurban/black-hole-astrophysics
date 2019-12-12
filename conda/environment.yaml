@@ -1,0 +1,10 @@
+name: black-hole-3.7
+channels:
+  - conda-forge
+dependencies:
+  - python=3.7
+  - ipython=7.10.1
+  - jupyter=1.0.0
+  - gwpy=1.0.0
+  - python-ldas-tools-framecpp=2.6.9
+  - python-nds2-client=0.16.6

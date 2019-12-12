@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+# Copyright (c) 2019 Alex L. Urban
+#
+# This file is part of black-hole-astrophysics
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+#
+# This tool builds a conda software environment from a YAML recipe using
+# the conda command-line client
+
+
+# -- global variables
+
+SCRIPTDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )
+
+
+# -- utilities
+
+conda_activate () {
+    source $(conda info --base)/etc/profile.d/conda.sh
+    conda activate black-hole-3.7
+}
+
+
+# -- body
+
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+    # print help string
+    echo -e "usage: bh-conda-env [-h] {create|check|update}\n"
+    echo -e "Create or update the conda environment for"
+    echo -e "Black Hole Astrophysics\n"
+    echo -e "positional arguments:"
+    echo -e "  action\t\tconda action to perform, must be one"
+    echo -e "\t\t\tof 'create', 'check', or 'update'\n"
+    echo -e "optional arguments:"
+    echo -e "  -h, --help\t\tshow this help message and exit"
+    exit 0
+
+elif [[ "$1" == "create" || "$1" == "update" ]]; then
+    # create or update a conda environment
+    CMD="conda env $1 --file ${SCRIPTDIR}/environment.yaml --verbose"
+    echo ${CMD}
+    eval ${CMD}
+    conda_activate
+    eval "${SCRIPTDIR}/bh-set-variables"
+    # rebuild the font cache
+    source "${CONDA_PREFIX}/etc/conda/activate.d/env_vars.sh"
+    python -c "from matplotlib import font_manager as fm; fm._rebuild()"
+    exit 0
+
+elif [ "$1" == "check" ]; then
+    conda_activate
+    # check package versions
+    CMD="conda info --all"
+    echo ${CMD}
+    eval ${CMD}
+    # check environment variables
+    echo -e "\nChecking environment variables:"
+    echo "GWPY_RCPARAMS: ${GWPY_RCPARAMS}"
+    echo "GWPY_USETEX: ${GWPY_USETEX}"
+    echo "MATPLOTLIBRC: ${MATPLOTLIBRC}"
+    echo "XDG_DATA_HOME: ${XDG_DATA_HOME}"
+    # check matplotlib configuration
+    python -c "from matplotlib import rcParams"
+    # wrap up
+    echo -e "\n-- All done --"
+    exit 0
+
+else
+    # argument not supported
+    echo "Unrecognized action $1"
+    echo "Argument must be one of 'create', 'check', or 'update'"
+    exit 1
+
+fi

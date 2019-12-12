@@ -1,0 +1,41 @@
+# Custom matplotlib configuration for black-hole-astrophysics
+
+# choose custom font
+font.sans-serif             : Roboto
+font.size                   : 10
+
+# use custom fonts for mathtext
+mathtext.fontset            : custom
+mathtext.it                 : Roboto:italic
+mathtext.rm                 : Roboto
+mathtext.bf                 : Roboto
+mathtext.sf                 : Roboto
+mathtext.tt                 : Roboto Slab
+mathtext.cal                : Calligraffiti
+
+# axis properties
+xtick.labelsize             : 14
+ytick.labelsize             : 14
+axes.labelsize              : 18
+axes.labelpad               : 5
+axes.titlesize              : 22
+axes.axisbelow              : False
+axes.edgecolor              : gray
+axes.formatter.limits       : -3, 4
+axes.formatter.use_mathtext : True
+
+# grid properties
+axes.grid                   : True
+grid.linewidth              : .5
+grid.alpha                  : 0.5
+
+# legend properties
+legend.fontsize             : 10
+legend.numpoints            : 2
+legend.handlelength         : 1
+legend.fancybox             : False
+legend.edgecolor            : inherit
+
+# figure properties
+figure.figsize              : 12, 6
+svg.fonttype                : none

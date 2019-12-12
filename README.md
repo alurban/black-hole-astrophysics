@@ -30,7 +30,9 @@ discuss setting up push privileges.)
 Contents
 --------
 
-To be filled in.
+This repository contains the following materials:
+
+* [Installation guide](INSTALL.md) for the `black-hole-3.7` conda environment
 
 Other resources
 ---------------
