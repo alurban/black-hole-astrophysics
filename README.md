@@ -75,6 +75,6 @@ Legalese
 --------
 
 Software and materials in this repository are provided under the terms of the
-[MIT License][LICENSE]. Strictly speaking, you are free to modify, distribute,
+[MIT License](LICENSE). Strictly speaking, you are free to modify, distribute,
 and use this software for any purpose (with appropriate citation) with the
 understanding that it comes "as-is" and has no warranty.
