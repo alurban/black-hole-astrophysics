@@ -30,8 +30,8 @@ Creating the `black-hole-3.7` conda environment
 Next, you can create what is known as a *virtual environment* to install all
 the packages you will need, without interfering with anything else already
 installed on your computer. Virtual environments are nice because they provide
-a sandbox in which you can do absolutely anything -- if it becomes corrupted,
-just nuke it from orbit and start over with ease!
+a sandbox in which you can do absolutely anything &mdash; if it becomes
+corrupted, just nuke it from orbit and start over with ease!
 
 Conda provides its own suite of tools to manage a special flavor of virtual
 environments, called *conda environments*. In this repository, the `conda`
