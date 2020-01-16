@@ -95,17 +95,47 @@ figure below).
 <p></p><p></p>
 </div>
 </div>
-<!-- Derivation of exponential decay
+<!-- Derivation of exponential decay -->
 <div class="col-md-6">
 <div class="card card-network mt-4 mb-4 shadow-sm">
 <div class="card-header pb-0">
 <h4 class="card-title">Exponential decay</h4>
 </div>
-<div class="card-body scaffold">
-
+<ul class="list-group list-group-flush">
+<li class="list-group-item">
+<p class="text-justify">Suppose that, on your way to Pittsburgh from Meadville
+on I-79, you take great care to make sure the distance you have left to travel
+is always the same as the speed you're going, i.e. at 50 miles out you go 50
+mph, and so on.</p>
+How long does it take you to get to Pittsburgh?
+<li class="list-group-item">
+<p class="text-justify">
+Let \( x(t) \) represent the distance (in miles) left to travel at time \( t \)
+(in arbitrary units). Since Meadville is about 86 miles from Pittsburgh on I-79,
+this sets your initial condition \( x(0) = x_0 \). For simplicity, let's assume
+your motion is one-dimensional with Pittsburgh at the origin, so you're moving
+in the \( -x \) direction on your way there. Your motion can be modeled as
+\[ {dx \over dt} = -{x \over H} \]
+where \( H \gt 0 \) is a (constant) unit conversion factor to get speed in miles
+per hour. Once again isolating variables and integrating, we get
+\[ \ln x = \int {dx \over x} = -{1 \over H} \int dt = -{t \over H} + C \]
+where \( C \) is a constant of integration. Taking the exponent of both sides
+and matching this integration constant to the initial condition, we get
+\[ x(t) = x_0 \exp (-t/H) \]
+</p>
+which models an exponential decay process (see figure below). In other words,
+while you can get <i>arbitrarily close</i> to Pittsburgh if you wait long
+enough, you will never technically arrive there...
+</ul>
+<div class="row">
+<div class="col-md-12">
+<a href="../plots/exp-decay.png" class="fancybox" rel="fancybox" target="_blank" title="Plot of exponential decay" data-fancybox="gallery" data-fancybox-group="images" data-caption="Exponential distance fall-off while traveling to Pittsburgh in a very peculiar way. (Seriously, who would actually do this?)">
+<img class="img-fluid w-100" src="../plots/exp-decay.png"></a>
 </div>
 </div>
-</div> -->
+<p></p><p></p>
+</div>
+</div>
 <!-- close the row -->
 </div>
 <!-- End matter -->
