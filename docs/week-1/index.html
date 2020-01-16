@@ -71,17 +71,16 @@ with the initial condition \( N(0) = 1 \). Since the culture's growth rate is
 proportional to how many bacteria there currently are, we can model this system
 with the (very simple) differential equation
 \[ {dN \over dt} = \alpha N \]
-where \( \alpha \) is a proportionality constant. Isolating variables so that
+where \( \alpha \gt 0 \) is a proportionality constant. Isolating variables so that
 \( N \) is on the left-hand side and \( t \) is on the right, we can then
 integrate directly:
 \[ \int {dN \over N} = \alpha \int dt \]
 This leaves us with a logarithmic relationship:
 \[ \ln N = \alpha t + C \]
 where \( C \) is a constant of integration.
-</p><p class="text-justify">
 Note, since \( N(0) = 1 \) we know that \( C = \ln[N(0)] = 0 \).
 Taking the exponent of both sides, we finally have
-\[ N(t) = \exp(\alpha t) \]
+\[ N(t) = \exp (\alpha t) \]
 </p>
 which is a model for the exponential growth of this bacteria culture (see
 figure below).
