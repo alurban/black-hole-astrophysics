@@ -50,7 +50,39 @@
 <!-- Begin supplemental notes -->
 <h2 class="mt-4">Supplemental notes</h2>
 <div class="row">
-
+<!-- Notes on differential equations -->
+<div class="col-md-6">
+<div class="card card-network mt-4 mb-4 shadow-sm">
+<div class="card-header pb-0">
+<h4 class="card-title">Differential equations</h4>
+</div>
+<ul class="list-group list-group-flush">
+<li class="list-group-item">
+<p class="text-justify">Differential equations are a many-fangled thing and
+come in lots of varieties. Physicists and mathematicians make certain
+distinctions based mostly on what they model, and what their solutions
+look like. Computationally, there are yet more distinctions based on what
+kind of integration schemes can be applied to them. We will discuss a lot of
+these in due time, but really, whole courses are taught about differential
+equations (and some of them are often required for physics majors).</p>
+<p class="text-justify">For now, it's worth focusing on just a few of the
+different kinds. An <i>ordinary</i> or <i>total</i> differential equation
+is one that relates various derivatives of some function \(x\) with only a
+single independent variable, \(t\), and can be written in the form
+\[ F \left( t; x, x', \dots, x^{(n)} \right) = 0 \]
+where \( F \) could, in general, be literally any function. A <i>linear</i>
+differential equation is one where \(F\) is a linear function of the form
+\[ y^{(n)} = \sum_{i=0}^{n-1} a_i(t) \, x^{(i)} + b(t) \]
+and these are a monumentally important topic in their own right; a <i>non-linear</i>
+differential equation is one that doesn't fit this scheme. Further,
+an <i>autonomous</i> differential equation is one where \(F\) doesn't depend
+on \(t\).</p>
+For our purposes, we will focus almost exclusively on <b>autonomous</b>, but
+not necessarily linear, differential equations.
+</li>
+</ul>
+</div>
+</div>
 <!-- Derivation of Kepler's third law -->
 <div class="col-md-6">
 <div class="card card-network mt-4 mb-4 shadow-sm">
