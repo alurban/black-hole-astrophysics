@@ -50,6 +50,60 @@
 <!-- Begin supplemental notes -->
 <h2 class="mt-4">Supplemental notes</h2>
 <div class="row">
+
+<!-- Derivation of Kepler's third law -->
+<div class="col-md-6">
+<div class="card card-network mt-4 mb-4 shadow-sm">
+<div class="card-header pb-0">
+<h4 class="card-title">Kepler's third law</h4>
+</div>
+<ul class="list-group list-group-flush">
+<li class="list-group-item">
+<p class="text-justify">In class I claimed that Kepler's third law could be
+"derived" from Newton's law of universal gravitation, <i>without</i> solving
+a differential equation. This idea is important enough that it's well worth
+stepping through here.</p>
+<p class="text-justify">Kepler's third law is what's known as a <i>scaling
+law:</i> it may not necessarily give an exact relation, but it does establish
+how one quantity changes with respect to another. In this case, we'd like to
+show that given a planet in an elliptical orbit around a star, its orbital
+period \( T \) should scale with its orbital semi-major axis \( a \) as a
+power law: \( T^2 \propto a^3 \).</p>
+<p class="text-justify">To start with, let's write down the force acting on
+the planet in spherical coordinates:
+\[ \mathbf{F} = m_2 \, {d^2r \over dt^2} \, \hat{\mathbf{r}}
+= - {Gm_1m_2 \over r^2} \, \hat{\mathbf{r}} \]
+where \( m_1 \geq m_2 \) are the masses of the star and planet, respectively.
+Obviously the factors of \( m_2 \) cancel, and we're left with an
+\(r\)-component of
+\[ {d^2r \over dt^2} = - {Gm_2 \over r^2}. \]
+Now, the left- and right-hand sides of this equation both have overall units
+of acceleration. If we could isolate those and make this equation unitless,
+we'd be left with <i>exactly one</i> mathematical problem that could be
+re-scaled to model different masses.</p>
+<p class="text-justify">To that end, we already know something about one family
+of solutions to this equation: they describe orbits, and orbits are inherently
+cyclical. Suppose that \( a \) and \( T \) are two constants describing
+the characteristic size and duration, respectively, of one cycle in a
+particular orbit. Then, write this equation in terms of the <b>unitless</b>
+variables \( \rho = r/a \) and \( \tau = t/T \):
+\[ {a \over T^2} \, {d^2\rho \over d\tau^2} = - {Gm_2 \over a^2} \, {1 \over \rho^2} \]
+We can now pull a sneaky little trick: since \( T \) and \( a \) are generic
+constants, we can lump all the constants into one ratio and set that equal to
+one, leaving us with a single differential equation
+\[ {d^2\rho \over d\tau^2} = -{1 \over \rho^2} \]
+and the condition that
+\[ {Gm_2 T^2 \over a^3} = 1. \]
+But this implies \( T^2 \propto a^3 \), exactly as we wanted to show.</p>
+</li>
+</ul>
+</div>
+</div>
+<!-- close out row -->
+</div>
+<!-- Begin worked examples -->
+<h2 class="mt-2">Worked examples</h2>
+<div class="row">
 <!-- Derivation of exponential growth -->
 <div class="col-md-6">
 <div class="card card-network mt-4 mb-4 shadow-sm">
