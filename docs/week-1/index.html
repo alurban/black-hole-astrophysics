@@ -10,6 +10,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js" type="text/javascript"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" type="text/javascript"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gwbootstrap@1.2.1/lib/gwbootstrap.min.js" type="text/javascript"></script>
 <title>Phys 290: Black Hole Astrophysics</title>
 </head>
@@ -45,6 +47,68 @@
 <h1>A Time for Introductions: Lecture</h1>
 </div>
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRi-Pp2sq0-fGAArW6FAsUxpB8-SG4Xzlg7TyvbHcu_imcbRomZiDnIALDuG1imVsRml2J1zIhsfABr/embed?start=false&loop=false&delayms=60000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<!-- Begin supplemental notes -->
+<h2 class="mt-4">Supplemental notes</h2>
+<div class="row">
+<!-- Derivation of exponential growth -->
+<div class="col-md-6">
+<div class="card card-network mt-4 mb-4 shadow-sm">
+<div class="card-header pb-0">
+<h4 class="card-title">Exponential growth</h4>
+</div>
+<ul class="list-group list-group-flush">
+<li class="list-group-item">
+<p class="text-justify">Consider a culture of bacteria. Initially there is a
+single bacterium; after a while, through cell division, it splits into two.
+A while later, two split into four, and so on. As the culture grows, its
+growth <i>rate</i> speeds up in proportion.</p>
+Can you model the growth of this bacteria culture?
+</li>
+<li class="list-group-item">
+<p class="text-justify">
+Let \( N(t) \) represent the number of bacteria in the culture at time \( t \),
+with the initial condition \( N(0) = 1 \). Since the culture's growth rate is
+proportional to how many bacteria there currently are, we can model this system
+with the (very simple) differential equation
+\[ {dN \over dt} = \alpha N \]
+where \( \alpha \) is a proportionality constant. Isolating variables so that
+\( N \) is on the left-hand side and \( t \) is on the right, we can then
+integrate directly:
+\[ \int {dN \over N} = \alpha \int dt \]
+This leaves us with a logarithmic relationship:
+\[ \ln N = \alpha t + C \]
+where \( C \) is a constant of integration.
+</p><p class="text-justify">
+Note, since \( N(0) = 1 \) we know that \( C = \ln[N(0)] = 0 \).
+Taking the exponent of both sides, we finally have
+\[ N(t) = \exp(\alpha t) \]
+</p>
+which is a model for the exponential growth of this bacteria culture (see
+figure below).
+</li>
+</ul>
+<div class="row">
+<div class="col-md-12">
+<a href="../plots/exp-growth.png" class="fancybox" rel="fancybox" target="_blank" title="Plot of exponential population growth" data-fancybox="gallery" data-fancybox-group="images" data-caption="Exponential population growth in a culture of bacteria. The general trend is shown as a solid curve, while the dots show the predicted number of bacteria at discreet intervals. Note, a factor of ln(2) ~ 0.69 has been absorbed into the proportionality constant.">
+<img class="img-fluid w-100" src="../plots/exp-growth.png"></a>
+</div>
+</div>
+<p></p><p></p>
+</div>
+</div>
+<!-- Derivation of exponential decay
+<div class="col-md-6">
+<div class="card card-network mt-4 mb-4 shadow-sm">
+<div class="card-header pb-0">
+<h4 class="card-title">Exponential decay</h4>
+</div>
+<div class="card-body scaffold">
+
+</div>
+</div>
+</div> -->
+<!-- close the row -->
+</div>
 <!-- End matter -->
 </div>
 <footer class="footer">
