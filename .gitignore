@@ -279,6 +279,7 @@ TSWLatexianTemp*
 .DS_store
 *.pyc
 /*.patch
+.ipynb_checkpoints/
 .nfs*
 *.swp
 /.cache/
