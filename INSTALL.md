@@ -48,7 +48,7 @@ cd conda/
 ./bh-conda-env create
 ```
 
-This may take several minutes to finish, but you'll be given a status bar       
+This may take several minutes to finish, but you'll be given a status bar
 along the way.
 
 **Note:** You may need to run this with `sudo` on your computer due to user
