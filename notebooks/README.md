@@ -2,12 +2,11 @@ Jupyter notebooks
 =================
 
 To develop Python code interactively we will make extensive use of
-[Jupyter](https://jupyter.readthedocs.io), a Python-based web app you can
-install on your computer and then use to launch this collection of
-**Jupyter notebooks**.
+[Jupyter](https://jupyter.readthedocs.io), a Python-based web application that
+launches a collection of **Jupyter notebooks**.
 
-Before we begin, open your Conda Powershell or Terminal app, activate the
-Conda environment, and move to your local clone of the repository:
+Before using Jupyter, open your Conda Powershell or Terminal app, activate the
+Conda environment, and move to your local clone of this repository:
 
 ### Mac/Linux
 
@@ -18,7 +17,7 @@ Conda environment, and move to your local clone of the repository:
 
 ### Windows
 
-```bash
+```powershell
 (base) C:\Users\myname>conda activate black-hole-3.7
 (black-hole-3.7) C:\Users\myname>cd ~\src\black-hole-astrophysics\notebooks
 ```
