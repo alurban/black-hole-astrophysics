@@ -61,6 +61,73 @@
 <!-- Begin supplemental notes -->
 <h2 class="mt-4">Supplemental notes</h2>
 <div class="row">
+<!-- Derivation of conic sections -->
+<div class="col-md-6">
+<div class="card card-network mt-4 mb-4 shadow-sm">
+<div class="card-header pb-0">
+<h4 class="card-title">Classical orbits and conic sections</h4>
+</div>
+<ul class="list-group list-group-flush">
+<li class="list-group-item">
+<p class="text-justify">We've seen in the last lecture that both the total
+energy
+\[ E = \frac{1}{2}\,\mu\dot{r} - \frac{GM\mu}{r} + \frac{L^2}{2\mu r^2} \]
+and the orbital angular momentum
+\[ L = \mu r^2 \dot{\varphi} \]
+are conserved quantities of the orbital motion. Further, we also showed that
+because of the symmetry of the system, all motion must be confined to a single
+plane. This gives us one constraint and two coupled differential equations,
+which is enough to uniquely specify the motion of the system.</p>
+<p class="text-justify">We can also show that the radial component of motion
+forms a <i>conic section</i>, eliminating one differential equation in the
+process. To see this, we could either take the time derivative of the total
+energy equation, or look at the \(r\)-component of acceleration:
+\[ \left( \ddot{r} - r\dot{\varphi}^2 \right) \, \hat{\mathbf{r}} = -\frac{GM\mu}{r^2} \, \hat{\mathbf{r}} \]
+which implies
+\[ \ddot{r} - r\dot{\varphi}^2 = -\frac{GM}{r^2}. \]
+This might look obscenely complicated because of the mixed time derivatives
+of \(r\) and \(\varphi\), but notice that we're free to change the independent
+variable to \(\varphi\), since
+\[ \frac{dr}{d\varphi} = \frac{dr}{dt} \left(\frac{d\varphi}{dt}\right)^{-1}. \]
+So, dividing through by \(\dot{\varphi}^2\) and changing variables, we have
+\[ \frac{d^2r}{d\varphi^2} - r = -\frac{GM\mu^2r^2}{L^2} = -\frac{r^2}{r_L} \]
+where
+\[ r_L = \frac{L^2}{GM\mu^2} \]
+is a constant depending on angular momentum.</p>
+<p class="text-justify">So far we have a second-order differential equation
+for \(r\) in terms of \(\varphi\). Our next step is to make this linear (and
+a lot more familiar) by changing variables <i>again</i> to \(s = 1/r\):
+\[ r_L\,\frac{d^2s}{d\varphi^2} + s = 1 \]
+This is the classic form of Hooke's law, which describes simple harmonic
+motion. Its general solution has the form
+\[ s(\varphi) = \frac{1}{r_L} \left[ 1 + e \cos(\varphi - \varphi_0) \right] \]
+We can set \(\varphi_0 = 0\) if we lay down our coordinate system so that
+\(\varphi = 0\) corresponds to the \(+x\)-axis. Replacing \(r = 1/s\), we're
+left with
+\[ r(\varphi) = \frac{r_L}{1 + e\cos\varphi} \]
+which is the equation that defines a conic section with <i>semi-latus rectum</i>
+\(r_L\) and <i>eccentricity</i> \(e \geq 0\).</p>
+<p class="text-justify">Note, eccentricity is a measure of how far the conic
+section deviates from a circle. An eccentricity of \(e=0\) is perfectly
+circular (and has minimum orbital energy); eccentricities \(0\lt e\lt 1\)
+are elliptical (with energies \(E \lt 0\); when \(e = 0\) the orbit is
+parabolic (or <i>marginally bound</i>) with zero total energy; and when
+\(e \gt 1\) the orbit is hyperbolic with \(E \gt 0\). In the center-of-mass
+reference frame, the semi-latus rectum \(r_L\) measures half the distance
+between points where the orbit intersects the \(y\)-axis; for a circular
+orbit, this is just the radius of the circle.</p>
+The figure below illustrates the difference between these orbits for a system
+of fixed mass and angular momentum.
+</li>
+<div class="row">
+<div class="col-md-12">
+<a href="../plots/conic-sections.png" class="fancybox" rel="fancybox" target="_blank" title="Examples of conic sections" data-fancybox="gallery" data-fancybox-group="images" data-caption="Examples of various conic sections in the orbit of a system with fixed masses and angular momentum.">
+<img class="img-fluid w-100" src="../plots/conic-sections.png"></a>
+</div>
+</div>
+<p></p><p></p>
+</ul>
+</div>
 </div>
 <!-- close the row -->
 </div>
