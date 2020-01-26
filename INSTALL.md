@@ -8,8 +8,8 @@ Introduction
 distributed free of charge and is well-supported for wide use.
 
 To study black hole dynamics, we will frequently find it useful to do
-numerical simulations, which inevitably require learning to write software.
-Our primary language will be Python (specifically, `python-3.7`) both because
+numerical simulations, which inevitably requires learning to write software.
+Our primary language will be Python (specifically, version 3.7) both because
 it is relatively intuitive and because there are many, many packages and
 libraries available through it. To install these packages, we will use
 [Conda](https://docs.conda.io/en/latest/), a package management and
@@ -43,7 +43,7 @@ In this repository, the `conda` folder contains tools that automatically build
 an environment for you from a pre-baked recipe that I maintain. Simply launch
 your Terminal app, go to your local clone of the git repository, and do:
 
-```bash
+```
 cd conda/
 ./bh-conda-env create
 ```
@@ -57,17 +57,17 @@ permissions.
 ### Windows
 
 The script provided here won't work on Windows systems, but fear not, because
-you can still do the same basic function. From the Start menu, open your
+you can still do the same basic process. From the Start menu, open your
 Conda Powershell app and do the following:
 
-```powershell
+```
 conda create -n black-hole-3.7 python=3.7
 ```
 
 This will create a Conda environment called `black-hole-3.7` that has version
 3.7 of Python baked-in. Next, install a few packages into this environment:
 
-```powershell
+```
 conda install -n black-hole-3.7 -c conda-forge ipython=7.11.1 jupyter=1.0.0 gwpy=1.0.1
 ```
 
@@ -79,7 +79,7 @@ along the way.
 The commands above build an environment called `black-hole-3.7`, which you can
 activate from your Powershell or Terminal app via
 
-```bash
+```
 conda activate black-hole-3.7
 ```
 
@@ -87,7 +87,7 @@ conda activate black-hole-3.7
 all the packages and features set up there. To go back to your computer's
 default (or *native*) environment, simply deactivate it:
 
-```bash
+```
 conda deactivate
 ```
 
@@ -96,20 +96,20 @@ Maintaining `black-hole-3.7`
 
 To check the environment after creating it, from a Mac or Linux machine:
 
-```bash
+```
 ./bh-conda-env check
 ```
 
 On a Windows machine, you can instead run
 
-```powershell
+```
 conda info --all
 ```
 
 This will list out the packages and environment variables contained within
 `black-hole-3.7`, which should include the following variables:
 
-```bash
+```
 GWPY_RCPARAMS
 GWPY_USETEX
 MATPLOTLIBRC
@@ -123,7 +123,7 @@ and how to change them.
 
 When in doubt, the help documentation is also informative:
 
-```bash
+```
 $ ./bh-conda-env --help
 usage: bh-conda-env [-h] {create|check|update}
 
