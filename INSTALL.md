@@ -1,9 +1,6 @@
 Installation
 ============
 
-Introduction
-------------
-
 **Note:** All software used for this course is open source, meaning it is
 distributed free of charge and is well-supported for wide use.
 
