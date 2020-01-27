@@ -127,6 +127,73 @@ of fixed mass and angular momentum.
 </ul>
 </div>
 </div>
+<!-- Show that there's no apsidal precession in classical gravity -->
+<div class="col-md-6">
+<div class="card card-network mt-4 mb-4 shadow-sm">
+<div class="card-header pb-0">
+<h4 class="card-title">Apsidal precession (or lack thereof)</h4>
+</div>
+<ul class="list-group list-group-flush">
+<li class="list-group-item">
+<p class="text-justify">Under Newtonian gravity, it turns out that any bound
+two-body orbit is not only elliptical, but also in a kind of harmony with
+itself: a planetary orbit that starts at either apsis (closest or farthest
+approach) at \(\varphi = \varphi_0\) will also <i>end</i> at the same apsis
+with \(\varphi = \varphi_0 + 2\pi\) if you wait exactly one orbital period.
+In other words, \(r(t)\) and \(\varphi(t)\) have the same intrinsic frequency,
+and classical orbits have no <i>apsidal precession</i>. You can actually
+see this from the definition of a conic section. If
+\[ r(\varphi) = \frac{r_L}{1 + e\cos\varphi} \]
+and if \(\varphi\rightarrow\varphi+2\pi\) on some periodic timescale \(T\),
+then \(r(t) = r(t+T)\). Is there a deeper physical reason for this?</p>
+<p class="text-justify">Consider the effective radial potential
+\[ \Phi_L(r) = -\frac{GM\mu}{r} + \frac{L^2}{2\mu r^2}. \]
+Remember that when we derived this potential we originally had some angular
+kinetic energy that looked like \(r^2\dot{\varphi}^2/2\), and we lumped this
+in with potential energy to conveniently eliminate \(\dot{\varphi}\). So
+what we really have here is a fictitious centrifugal force caused by angular
+motion in a non-inertial reference frame, which is counteracting the inward
+pull of gravity. Orbital motion then arises as the balance of these two
+forces.</p>
+<p class="text-justify">What are the frequencies that characterize this motion?
+First, we know from conservation of angular momentum that the average angular
+frequency of the true anomaly angle is
+\[ \omega_{\varphi} = \frac{L}{\mu r_L^2} = (GM)^2 \left(\frac{\mu}{L}\right)^3. \]
+To get the average angular frequency of the radial position, \(\omega_r\), we
+can expand \(\Phi_L(r)\) to second order around the radius of a circular orbit:
+\begin{align}
+\Phi_L(r) &amp;= \sum_{n=0}^{\infty} \frac{1}{n!} \, \frac{d^n\Phi_L}{dr^n}(r_L) \, (r - r_L)^n \\
+          &amp;= \Phi_L(r_L) + \frac{1}{2}\,\frac{d^2\Phi_L}{dr^2}(r_L)\,(r-r_L)^2 + \mathcal{O}\left[(r-r_L)\right]^3
+\end{align}
+To second order in \(r\), small deviations away from a circular orbit act like
+a Hooke's law potential with
+\[ \Phi_L(r) \approx \Phi_L(r_L) + \frac{1}{2}\mu\omega_r^2(r-r_L)^2 \]
+where the angular frequency can be read off by matching terms:
+\[ \omega_r = \sqrt{\frac{1}{\mu} \frac{d^2\Phi_L}{dr^2}(r_L)} = (GM)^2 \left(\frac{\mu}{L}\right)^3. \]
+Hence \(\omega_r = \omega_{\varphi}\), and the total precession angle is
+exactly zero: \(\delta\varphi = T\left(\omega_{\varphi} - \omega_r\right) =
+0.\)</p>
+<p class="text-justify">The figure below illustrates this argument for a
+simulation of the orbit of Mercury around the Sun. As predicted, the evolution
+of \(r\) returns to the same position after one orbital period, while
+\(\varphi\) evolves by exactly \(2\pi\) radians (or 360 degrees). In reality
+the orbit of Mercury actually does precess, in part due to the influence of
+other heavy planets in the Solar System. However, a precession of just 43
+arcseconds per century is unaccounted for by Newtonian gravity, but is
+significant enough to be measured. We will come back to this anomalous
+perihelion shift of Mercury in just a couple of weeks when we learn about
+general relativity.</p>
+</li>
+<div class="row">
+<div class="col-md-10 offset-md-1">
+<a href="../plots/time-evolution.png" class="fancybox" rel="fancybox" target="_blank" title="Time evolution of the orbit of Mercury" data-fancybox="gallery" data-fancybox-group="images" data-caption="Time evolution of a simulated orbit of the planet Mercury. Shown here are the radial distance in astronomical units (top) and the true anomaly angle in degrees (bottom), with perihelion at 0 degrees. Notice that both quantities complete exactly one cycle over the course of an orbital period (0.24 years) in this simulation.">
+<img class="img-fluid w-100" src="../plots/time-evolution.png"></a>
+</div>
+</div>
+<p></p><p></p>
+</ul>
+</div>
+</div>
 <!-- close the row -->
 </div>
 <!-- End matter -->
