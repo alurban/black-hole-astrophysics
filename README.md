@@ -30,6 +30,16 @@ on Windows. For Windows users, Git can be installed (for free) by following
 [this link](https://git-scm.com/downloads) and selecting the best graphical
 installer for your operating system.
 
+**Note for Mac users:** if Git is installed on your system but doesn't work
+straight away, you may need to re-install `xcode` tools:
+
+```
+xcode-select --install
+```
+
+This is annoying, but harmless, as the tools are open-source (i.e., free) and
+should take only a few minutes to install.
+
 Access
 ------
 
