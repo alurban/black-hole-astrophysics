@@ -67,7 +67,7 @@ you would like to discuss setting up push privileges.
 Git allows users to access the full history of edits to files in this
 repository. The primary branch of that history, by convention, is referred to
 as `master`. This is analogous to music production, where audio engineers
-keep a running copy of progress on a song called the master copy.
+keep a running copy of progress on a song called the *master copy*.
 
 Whenever I post updates, fixes, or new software notebooks, you can pull them
 down to your laptop by opening Terminal (on Mac or Linux) or Git Shell (on
