@@ -144,7 +144,7 @@
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 class="mt-4" id="Step-3:-define-useful-helper-functions">Step 3: define useful helper functions</h3><p>In the course of doing our simulation, it'll be useful to outsource the heavy lifting to a few robustly-defined functions that can then be called at each step. We will define one function for the right-hand side of our differential equation for \(\varphi(t)\),</p>
-$$ \dot{\varphi} = \frac{d\varphi}{dt} = F(\varphi) = \frac{L}{\mu R_L^2} \left( 1 + e\cos\varphi \right)^2 $$<p>where \(R_L\) is the semi-latus rectum for a given angular momentum. A second function will approximate the solution to this equation using the RK4 method, which is determined by a four-step process at each point:</p>
+$$ \dot{\varphi} = \frac{d\varphi}{dt} = F(\varphi) = \frac{L}{\mu r_L^2} \left( 1 + e\cos\varphi \right)^2 $$<p>where \(r_L\) is the semi-latus rectum for a given angular momentum. A second function will approximate the solution to this equation using the RK4 method, which is determined by a four-step process at each point:</p>
 \begin{align}
 k_1 &amp;= h\,F(\varphi_i) \\
 k_2 &amp;= h\,F\left(\varphi_i + \frac{k_1}{2}\right) \\
@@ -205,7 +205,7 @@ k_4 &amp;= h\,F(\varphi_i + k_3) \\
 <h3 class="mt-4" id="Step-4:-set-initial-conditions">Step 4: set initial conditions</h3><p>We're now in a position to stage the simulation by setting up its initial conditions. This includes an initial value for \(\varphi\), which we will set to 0 radians so that motion starts on the positive \(x\)-axis.</p>
 <p>We will also need to create an array of discrete timestamps. We can be somewhat clever in doing this, using a combination of elliptical geometry and Kepler's third law to predict the orbital period, \(T\), in terms of the semi-major axis, \(a\):</p>
 \begin{align}
-a = \frac{R_L}{1 - e^2} \\
+a = \frac{r_L}{1 - e^2} \\
 \left(\frac{T}{2\pi}\right)^2 = \frac{a^3}{GM}
 \end{align}<p>We will simulate exactly one orbital period with a relatively small step size of \(h = T/10^2\).</p>
 
@@ -257,7 +257,7 @@ a = \frac{R_L}{1 - e^2} \\
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 class="mt-4" id="Step-6:-get-the-radial-position">Step 6: get the radial position</h3><p>We will now reconstruct the radial position from the standard formula for a conic section that we derived in class,</p>
-$$ r[\varphi(t)] = \frac{R_L}{1 + e\cos[\varphi(t)]} $$<p>To do this efficiently we will first convert <code>phi</code> to a NumPy array object, which makes mathematical operations easier to handle internally.</p>
+$$ r[\varphi(t)] = \frac{r_L}{1 + e\cos[\varphi(t)]} $$<p>To do this efficiently we will first convert <code>phi</code> to a NumPy array object, which makes mathematical operations easier to handle internally.</p>
 
 </div>
 </div>
