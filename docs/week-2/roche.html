@@ -150,7 +150,7 @@ k_1 &amp;= h\,F(\varphi_i) \\
 k_2 &amp;= h\,F\left(\varphi_i + \frac{k_1}{2}\right) \\
 k_3 &amp;= h\,F\left(\varphi_i + \frac{k_2}{2}\right) \\
 k_4 &amp;= h\,F(\varphi_i + k_3) \\
-\varphi_{i+1} &amp;= \varphi_i + \frac{h}{6} \left( k_1 + 2k_2 + 2k_3 + k_4 \right)
+\varphi_{i+1} &amp;= \varphi_i + \frac{1}{6} \left( k_1 + 2k_2 + 2k_3 + k_4 \right)
 \end{align}<p>where \(h\) is the step size in time and \(\varphi_i\) the value of \(\varphi\) at the previous point.</p>
 <p>The functions <code>rhs</code> and <code>rk4</code> below implement these equations numerically. A third function, <code>_format_scientific</code>, is provided in order to render numerical values nicely for plots using \(\LaTeX\).</p>
 <p><strong>Note:</strong> The name of <code>_format_scientific</code> begins with an underscore (<code>_</code>) because it is intended as a <em>private function</em>. What this means is that, if you were to convert this notebook to a standard Python module and then try to import it, <code>rhs</code> and <code>rk4</code> would be within your purview to use, but <code>_format_scientific</code> is intended for internal use only.</p>
@@ -187,11 +187,11 @@ k_4 &amp;= h\,F(\varphi_i + k_3) \\
 <span class="sd">        y: the function value at the previous point</span>
 <span class="sd">        h: the integration step size</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">k1</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-    <span class="n">k2</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">k1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">k3</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">k2</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">k4</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">k3</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">y</span> <span class="o">+</span> <span class="p">(</span><span class="n">h</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">k2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">k3</span> <span class="o">+</span> <span class="n">k4</span><span class="p">)</span>
+    <span class="n">k1</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">rhs</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">k2</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">rhs</span><span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="n">k1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">k3</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">rhs</span><span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="n">k2</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">k4</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">rhs</span><span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="n">k3</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">y</span> <span class="o">+</span> <span class="p">(</span><span class="n">1</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">k2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">k3</span> <span class="o">+</span> <span class="n">k4</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -203,11 +203,11 @@ k_4 &amp;= h\,F(\varphi_i + k_3) \\
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 class="mt-4" id="Step-4:-set-initial-conditions">Step 4: set initial conditions</h3><p>We're now in a position to stage the simulation by setting up its initial conditions. This includes an initial value for \(\varphi\), which we will set to 0 radians so that motion starts on the positive \(x\)-axis.</p>
-<p>We will also need to create an array of discrete timestamps. We can be somewhat clever in doing this, using a combination of elliptical geometry and Kepler's third law to predict the orbital period, \(T\):</p>
+<p>We will also need to create an array of discrete timestamps. We can be somewhat clever in doing this, using a combination of elliptical geometry and Kepler's third law to predict the orbital period, \(T\), in terms of the semi-major axis, \(a\):</p>
 \begin{align}
 a = \frac{R_L}{1 - e^2} \\
 \left(\frac{T}{2\pi}\right)^2 = \frac{a^3}{GM}
-\end{align}<p>Thus will simulate exactly one orbital period, with a relatively small step size of \(h = T/10^4\).</p>
+\end{align}<p>We will simulate exactly one orbital period with a relatively small step size of \(h = T/10^2\).</p>
 
 </div>
 </div>
@@ -309,6 +309,14 @@ $$ r[\varphi(t)] = \frac{R_L}{1 + e\cos[\varphi(t)]} $$<p>To do this efficiently
 </div>
 </div>
 
+<div class="row">
+<div class="col-md-5">
+<a href="../plots/mercury-track.png" class="fancybox" rel="fancybox" target="_blank" title="Orbital track of the planet Mercury" data-fancybox="gallery" data-fancybox-group="images" data-caption="Simulated track of the orbit of Mercury around the Sun with eccentricity 0.21.">
+<img class="img-fluid w-100" src="../plots/mercury-track.png"></a>
+</div>
+</div>
+<p></p><p></p>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -356,6 +364,15 @@ $$ E = \frac{1}{2} \,\mu \dot{r}^2 - \frac{GM\mu}{r} + \frac{L^2}{2\mu r^2}, $$<
 </div>
 </div>
 </div>
+
+<div class="row">
+<div class="col-md-5">
+<a href="../plots/mercury-E.png" class="fancybox" rel="fancybox" target="_blank" title="Total energy of the orbit of Mercury" data-fancybox="gallery" data-fancybox-group="images" data-caption="Total energy conservation in a simulated orbit of Mercury using the RK4 method. Notice that even with a relatively large step size, the percentage error in energy is no greater than 0.1%.">
+<img class="img-fluid w-100" src="../plots/mercury-E.png"></a>
+</div>
+</div>
+<p></p><p></p>
+
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -401,6 +418,14 @@ $$ L = \mu r^2 \dot{\varphi}. $$<p>We will compare this to <code>L</code>, our g
     </div>
 </div>
 </div>
+
+<div class="row">
+<div class="col-md-5">
+<a href="../plots/mercury-L.png" class="fancybox" rel="fancybox" target="_blank" title="Orbital angular momentum of Mercury" data-fancybox="gallery" data-fancybox-group="images" data-caption="Angular momentum conservation in a simulated orbit of Mercury, where percentage error in L is no greater than 0.1%.">
+<img class="img-fluid w-100" src="../plots/mercury-L.png"></a>
+</div>
+</div>
+<p></p><p></p>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
