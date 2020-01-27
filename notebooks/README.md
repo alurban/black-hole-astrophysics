@@ -42,3 +42,10 @@ jupyter notebook classical-orbits.ipynb
 The notebook itself will have a standard file menu allowing you to save, quit,
 and do various other actions. If you ever need to kill the server from your
 Powershell or Terminal window, you can do that by hitting `CTRL`+`C`.
+
+The blocks of code within a Jupyter notebook are called *cells*. To run these,
+either use the menu at the top of the page (the button that says `Run` or the
+dropdown menu `Cell`) or on your keyboard hit `SHIFT`+`RETURN` or
+`SHIFT`+`ENTER`. These cells are meant to be run in sequential order, so if
+you go back and make a change to a previous cell, in general you should re-run
+the later cells as well.
