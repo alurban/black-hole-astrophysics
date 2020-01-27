@@ -58,11 +58,365 @@
 <h1>Roche potentials and numerical integration</h1>
 </div>
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSjcYUV2qn_f4nQqSZY3SFLQ0tTeP3XO8hPhg3VcG8qiGaWK4z2Zc2TNk6wUDhRQIA03M3ZNXSYVPNQ/embed?start=false&loop=false&delayms=15000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-<!-- Begin supplemental notes -->
-<h2 class="mt-4">Supplemental notes</h2>
-<div class="row">
+<!-- Load the notebook contents -->
+<h2 class="mt-4 mb-2">Simulating classical orbits using the RK4 method</h2>
+<div class="card card-network card-body shadow-sm">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The code below will walk you through how to simulate classical two-body orbits using the 4th-order Runge-Kutta (RK4) numerical integration technique. Since this is our first interaction with Python, we will step through these items carefully.</p>
+<p><strong>Note:</strong> this material is taken from the interactive Jupyter notebook, <a href="https://github.com/alurban/black-hole-astrophysics/blob/master/notebooks/classical-orbits.ipynb"><code>classical-orbits.ipynb</code></a>.</p>
+<h3 class="mt-4" id="Step-1:-import-useful-packages">Step 1: import useful packages</h3><p>As we've discussed before, Python is an <em>interpreted</em> language (rather than a <em>compiled</em> one). This means you can interact directly with the Python interpreter to run your code in real-time, without having to compile it. There are many, many, many third-party software applications available through the Python Package Index (<a href="https://pypi.org">PyPI</a>), which in general can be <strong>imported</strong> so you can use them in your code.</p>
+<p>In this example we will make heavy use of <a href="https://numpy.org">NumPy</a>, a fundamental package for scientific computing with Python.</p>
+
 </div>
-<!-- close the row -->
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We will also make use of <a href="https://matplotlib.org">Matplotlib</a>, a standard and phenomenally useful data visualization library with native support for Jupyter.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 class="mt-4" id="Step-2:-define-global-variables">Step 2: define global variables</h3><p>We will now define a few global-scope variables that will be used across the notebook, particularly in some functions defined below. By convention these global variables should always be named in all-caps, in order to distinguish them from other, local-scope variables.</p>
+<p>In general, the global variables defined here correspond either to physical constants or to general properties of the binary system we're trying to simulate. The values I've entered below correspond to the orbit of the planet <a href="https://solarsystem.nasa.gov/planets/mercury/overview/">Mercury</a> around the Sun, but if you wanted to visualize a different system, you can change those values here.</p>
+<p><strong>Note:</strong> Mercury is a very important example in the history of general relativity, so it is one we will be returning to.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># global variables</span>
+<span class="n">PI</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">pi</span>
+<span class="n">ECC</span> <span class="o">=</span> <span class="mf">0.21</span>  <span class="c1"># orbital eccentricity</span>
+<span class="n">G</span> <span class="o">=</span> <span class="mf">6.67408e-11</span>  <span class="c1"># Newton&#39;s constant in m^3 / kg / s</span>
+<span class="n">MSUN</span> <span class="o">=</span> <span class="mf">1.989e30</span>  <span class="c1"># Solar mass in kg</span>
+<span class="n">M1</span> <span class="o">=</span> <span class="n">MSUN</span>  <span class="c1"># primary mass in kg</span>
+<span class="n">M2</span> <span class="o">=</span> <span class="mf">3.285e23</span>  <span class="c1"># Mercury mass in kg</span>
+<span class="n">MU</span> <span class="o">=</span> <span class="n">M1</span> <span class="o">*</span> <span class="n">M2</span> <span class="o">/</span> <span class="p">(</span><span class="n">M1</span> <span class="o">+</span> <span class="n">M2</span><span class="p">)</span>  <span class="c1"># reduced mass in kg</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">M1</span> <span class="o">+</span> <span class="n">M2</span>  <span class="c1"># total mass in kg</span>
+<span class="n">AU</span> <span class="o">=</span> <span class="mf">1.496e11</span>  <span class="c1"># 1 astronomical unit in m</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mf">9e38</span>  <span class="c1"># Mercury angular momentum in J*s</span>
+<span class="n">RL</span> <span class="o">=</span> <span class="n">L</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">G</span> <span class="o">*</span> <span class="n">M</span> <span class="o">*</span> <span class="n">MU</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># semi-latus rectum in meters</span>
+<span class="n">E</span> <span class="o">=</span> <span class="p">(</span><span class="n">MU</span><span class="o">**</span><span class="mi">3</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">G</span><span class="o">*</span><span class="n">M</span> <span class="o">/</span> <span class="n">L</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">ECC</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># total energy in J</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 class="mt-4" id="Step-3:-define-useful-helper-functions">Step 3: define useful helper functions</h3><p>In the course of doing our simulation, it'll be useful to outsource the heavy lifting to a few robustly-defined functions that can then be called at each step. We will define one function for the right-hand side of our differential equation for \(\varphi(t)\),</p>
+$$ \dot{\varphi} = \frac{d\varphi}{dt} = F(\varphi) = \frac{L}{\mu R_L^2} \left( 1 + e\cos\varphi \right)^2 $$<p>where \(R_L\) is the semi-latus rectum for a given angular momentum. A second function will approximate the solution to this equation using the RK4 method, which is determined by a four-step process at each point:</p>
+\begin{align}
+k_1 &amp;= h\,F(\varphi_i) \\
+k_2 &amp;= h\,F\left(\varphi_i + \frac{k_1}{2}\right) \\
+k_3 &amp;= h\,F\left(\varphi_i + \frac{k_2}{2}\right) \\
+k_4 &amp;= h\,F(\varphi_i + k_3) \\
+\varphi_{i+1} &amp;= \varphi_i + \frac{h}{6} \left( k_1 + 2k_2 + 2k_3 + k_4 \right)
+\end{align}<p>where \(h\) is the step size in time and \(\varphi_i\) the value of \(\varphi\) at the previous point.</p>
+<p>The functions <code>rhs</code> and <code>rk4</code> below implement these equations numerically. A third function, <code>_format_scientific</code>, is provided in order to render numerical values nicely for plots using \(\LaTeX\).</p>
+<p><strong>Note:</strong> The name of <code>_format_scientific</code> begins with an underscore (<code>_</code>) because it is intended as a <em>private function</em>. What this means is that, if you were to convert this notebook to a standard Python module and then try to import it, <code>rhs</code> and <code>rk4</code> would be within your purview to use, but <code>_format_scientific</code> is intended for internal use only.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># -- functions ----------------------------------------------------------------</span>
+
+<span class="k">def</span> <span class="nf">_format_scientific</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Format an arbitrary floating-point number in scientific notation</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%.3g</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">x</span> <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">4</span><span class="p">)</span> <span class="k">else</span> \
+        <span class="sa">r</span><span class="s1">&#39;</span><span class="si">%.3g</span><span class="s1"> \times 10^{</span><span class="si">%d</span><span class="s1">}&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="mi">10</span><span class="o">**</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">rhs</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the right-hand side of the equation of motion at a single</span>
+<span class="sd">    point, given the following parameters:</span>
+
+<span class="sd">        y: solution value at the previous point</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">L</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">ECC</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">MU</span> <span class="o">*</span> <span class="n">RL</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">rk4</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the estimated integral at a new point using the RK4 method (an</span>
+<span class="sd">    extension of Simpson&#39;s rule) given the following parameters:</span>
+
+<span class="sd">        y: the function value at the previous point</span>
+<span class="sd">        h: the integration step size</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">k1</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">k2</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">k1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">k3</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">k2</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">k4</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">k3</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">y</span> <span class="o">+</span> <span class="p">(</span><span class="n">h</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">k2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">k3</span> <span class="o">+</span> <span class="n">k4</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 class="mt-4" id="Step-4:-set-initial-conditions">Step 4: set initial conditions</h3><p>We're now in a position to stage the simulation by setting up its initial conditions. This includes an initial value for \(\varphi\), which we will set to 0 radians so that motion starts on the positive \(x\)-axis.</p>
+<p>We will also need to create an array of discrete timestamps. We can be somewhat clever in doing this, using a combination of elliptical geometry and Kepler's third law to predict the orbital period, \(T\):</p>
+\begin{align}
+a = \frac{R_L}{1 - e^2} \\
+\left(\frac{T}{2\pi}\right)^2 = \frac{a^3}{GM}
+\end{align}<p>Thus will simulate exactly one orbital period, with a relatively small step size of \(h = T/10^4\).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># set initial conditions</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">RL</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">ECC</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># orbital semi-major axis</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">PI</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">a</span><span class="o">**</span><span class="mi">3</span> <span class="o">/</span> <span class="p">(</span><span class="n">G</span> <span class="o">*</span> <span class="n">M</span><span class="p">))</span>  <span class="c1"># orbital period</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">T</span> <span class="o">/</span> <span class="mf">1e2</span>  <span class="c1"># step size, determined as 0.01% of T</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span> <span class="o">+</span> <span class="n">dt</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>  <span class="c1"># time samples</span>
+<span class="n">phi</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># orbital phase initial condition</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 class="mt-4" id="Step-5:-simulation!">Step 5: simulation!</h3><p>Now that we've laid all the groundwork, we're in a position to perform the actual simulation. This is going to look remarkably simple because of the way we've defined helper functions: we're just going to have a simple <code>for</code> loop that ranges over all timestamps and, for each one, calls a function to iterate the numerical integration and then appends the result to <code>phi</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># do the simulation</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">phi</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rk4</span><span class="p">(</span><span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dt</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 class="mt-4" id="Step-6:-get-the-radial-position">Step 6: get the radial position</h3><p>We will now reconstruct the radial position from the standard formula for a conic section that we derived in class,</p>
+$$ r[\varphi(t)] = \frac{R_L}{1 + e\cos[\varphi(t)]} $$<p>To do this efficiently we will first convert <code>phi</code> to a NumPy array object, which makes mathematical operations easier to handle internally.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># get radial position</span>
+<span class="n">phi</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span>  <span class="c1"># NumPy arrays are easier to work with</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">RL</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">ECC</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">))</span>  <span class="c1"># from the parametric equation for r</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 class="mt-4" id="Step-7:-plot-the-orbital-track">Step 7: plot the orbital track</h3><p>We can now visualize the orbital track by plotting \((r(t), \varphi(t))\) in polar coordinates. Fortunately, Matplotlib makes it very easy to do this, with support for fine-tuning various features of the plot such as axis tick marks and color schemes.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># plot the equivalent-one-body orbital track</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span> 
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;polar&#39;</span><span class="p">)</span>  <span class="c1"># use polar projection</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">phi</span><span class="p">,</span> <span class="n">r</span><span class="o">/</span><span class="n">AU</span><span class="p">,</span> <span class="s1">&#39;#4ba6ff&#39;</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$m_1 = </span><span class="si">%s</span><span class="s1">\,M_{\odot}$</span><span class="se">\n</span><span class="s1">$m_2 = </span><span class="si">%s</span><span class="s1">\,M_{\odot}$&#39;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="n">_format_scientific</span><span class="p">(</span><span class="n">M1</span><span class="o">/</span><span class="n">MSUN</span><span class="p">),</span> <span class="n">_format_scientific</span><span class="p">(</span><span class="n">M2</span><span class="o">/</span><span class="n">MSUN</span><span class="p">)))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">framealpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_rticks</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$L=</span><span class="si">%s</span><span class="s1">$ J$\cdot$s, $e=</span><span class="si">%.3g</span><span class="s1">$&#39;</span> <span class="o">%</span> <span class="p">(</span>
+    <span class="n">_format_scientific</span><span class="p">(</span><span class="n">L</span><span class="p">),</span> <span class="n">ECC</span><span class="p">),</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 class="mt-4" id="Step-8:-check-that-energy-is-conserved">Step 8: check that energy is conserved</h3><p>Huzzah, we have simulated Mercury's orbit! Now we'll want to do a couple of sanity checks to make sure our integration scheme did it accurately and faithfully. To examine this, recall that we already know the energy we <em>expect</em> the system to have is the constant <code>E</code>, a global variable. We can directly estimate the percentage error by numerically differentiating \(r\), re-calculating the energy by hand for each data point using the condition</p>
+$$ E = \frac{1}{2} \,\mu \dot{r}^2 - \frac{GM\mu}{r} + \frac{L^2}{2\mu r^2}, $$<p>and then comparing these values to <code>E</code>.</p>
+<p><strong>Note:</strong> to take a derivative numerically, we will use the convenience function <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.gradient.html"><code>numpy.gradient</code></a>. This is based on an algorithm that is second-order accurate everywhere except the first and last data points, where it is first-order accurate.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># check that the energy is conserved</span>
+<span class="n">rdot</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>  <span class="c1"># time derivative of r</span>
+<span class="n">energy</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">MU</span><span class="o">*</span><span class="n">rdot</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">G</span><span class="o">*</span><span class="n">M</span><span class="o">*</span><span class="n">MU</span><span class="o">/</span><span class="n">r</span> <span class="o">+</span> <span class="n">L</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">MU</span><span class="o">*</span><span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">error</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">energy</span> <span class="o">-</span> <span class="n">E</span><span class="p">)</span><span class="o">/</span><span class="n">E</span><span class="p">)</span>
+
+<span class="c1"># set up a figure</span>
+<span class="n">ty</span> <span class="o">=</span> <span class="n">t</span> <span class="o">/</span> <span class="mf">3.1536e7</span>  <span class="c1"># convert time to years</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># plot the total energy</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ty</span><span class="p">,</span> <span class="n">energy</span><span class="o">/</span><span class="mf">1e32</span><span class="p">,</span> <span class="s1">&#39;Orange&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">ty</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ty</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">E</span><span class="o">/</span><span class="mf">1e32</span><span class="p">,</span> <span class="n">E</span><span class="o">/</span><span class="mf">1e32</span><span class="p">],</span> <span class="s1">&#39;k--&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mf">1.1</span><span class="o">*</span><span class="n">E</span><span class="o">/</span><span class="mf">1e32</span><span class="p">,</span> <span class="mf">0.9</span><span class="o">*</span><span class="n">E</span><span class="o">/</span><span class="mf">1e32</span><span class="p">])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$E$ [$10^</span><span class="si">{32}</span><span class="s1">$ J]&#39;</span><span class="p">)</span>
+
+<span class="c1"># plot the percentage error on a separate graph</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ty</span><span class="p">,</span> <span class="mi">100</span><span class="o">*</span><span class="n">error</span><span class="p">,</span> <span class="s1">&#39;DarkSlateGray&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="n">ty</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">ty</span><span class="o">.</span><span class="n">max</span><span class="p">()])</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$t$ [years]&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mf">1e-5</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Percentage error [%]&#39;</span><span class="p">)</span>
+<span class="c1"># show the figure</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 class="mt-4" id="Step-9:-check-that-angular-momentum-is-conserved">Step 9: check that angular momentum is conserved</h3><p>Finally, we will do the same with the magnitude of orbital angular momentum, based on the condition that</p>
+$$ L = \mu r^2 \dot{\varphi}. $$<p>We will compare this to <code>L</code>, our global variable giving the expected angular momentum.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># check that the angular momentum is conserved</span>
+<span class="n">phidot</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">phi</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>  <span class="c1"># time derivative of phi</span>
+<span class="n">angmomentum</span> <span class="o">=</span> <span class="n">MU</span> <span class="o">*</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">phidot</span>
+<span class="n">Lerror</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">angmomentum</span> <span class="o">-</span> <span class="n">L</span><span class="p">)</span><span class="o">/</span><span class="n">L</span><span class="p">)</span>
+
+<span class="c1"># set up a figure</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># plot the orbital angular momentum</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ty</span><span class="p">,</span> <span class="n">angmomentum</span><span class="o">/</span><span class="mf">1e38</span><span class="p">,</span> <span class="s1">&#39;DeepSkyBlue&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">ty</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ty</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">L</span><span class="o">/</span><span class="mf">1e38</span><span class="p">,</span> <span class="n">L</span><span class="o">/</span><span class="mf">1e38</span><span class="p">],</span> <span class="s1">&#39;k--&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mf">0.9</span><span class="o">*</span><span class="n">L</span><span class="o">/</span><span class="mf">1e38</span><span class="p">,</span> <span class="mf">1.1</span><span class="o">*</span><span class="n">L</span><span class="o">/</span><span class="mf">1e38</span><span class="p">])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$L$ [$10^</span><span class="si">{38}</span><span class="s1">$ J$\cdot$s]&#39;</span><span class="p">)</span>
+
+<span class="c1"># plot the percentage error on a separate graph</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ty</span><span class="p">,</span> <span class="mi">100</span><span class="o">*</span><span class="n">Lerror</span><span class="p">,</span> <span class="s1">&#39;DarkSlateGray&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="n">ty</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">ty</span><span class="o">.</span><span class="n">max</span><span class="p">()])</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$t$ [years]&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mf">1e-5</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Percentage error [%]&#39;</span><span class="p">)</span>
+
+<span class="c1"># show the figure</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 class="mt-4" id="Digging-deeper">Digging deeper</h3><p>Now that we've simulated a complete orbit, consider the following:</p>
+<ul>
+<li>Can you plot <code>r</code> and <code>phi</code> as a function of time? (Try to do it in the same figure but on separate graphs, like we did for the percentage error plots above.)</li>
+<li>If you think of \(r\) and \(\varphi\) as oscillators, do they have the same frequency? (Remember: they should, because there can be no apsidal precession in the classical two-body problem.)</li>
+<li>What do the orbital features look like if you try to model different Solar System planets? How well are the energy and angular momentum conserved, numerically speaking?</li>
+<li>Do you have to change anything about your initial conditions if you want to model parabolic or hyperbolic orbits? How well are the energy and angular momentum conserved, numerically?</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 <!-- End matter -->
 </div>
