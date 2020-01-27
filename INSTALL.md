@@ -38,10 +38,10 @@ setting this up on your own computer.
 
 In this repository, the `conda` folder contains tools that automatically build
 an environment for you from a pre-baked recipe that I maintain. Simply launch
-your Terminal app, go to your local clone of the git repository, and do:
+your Terminal app and do:
 
 ```
-cd conda/
+cd ~/src/black-hole-astrophysics/conda
 ./bh-conda-env create
 ```
 
@@ -74,7 +74,7 @@ along the way.
 ### Activating and deactivating
 
 The commands above build an environment called `black-hole-3.7`, which you can
-activate from your Powershell or Terminal app via
+activate from your Conda Powershell or Terminal app via
 
 ```
 conda activate black-hole-3.7
@@ -104,7 +104,8 @@ conda info --all
 ```
 
 This will list out the packages and environment variables contained within
-`black-hole-3.7`, which should include the following variables:
+`black-hole-3.7`, which on a Mac/Linux machine should include the following
+environment variables:
 
 ```
 GWPY_RCPARAMS
