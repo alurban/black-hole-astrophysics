@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<base href=".." />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/fontawesome.min.css" rel="stylesheet" media="all" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/solid.min.css" rel="stylesheet" media="all" />
+<link href="https://cdn.jsdelivr.net/npm/gwbootstrap@1.3.1/lib/gwbootstrap.min.css" rel="stylesheet" media="all" />
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.11/jquery.lazy.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/gwbootstrap@1.3.1/lib/gwbootstrap.min.js" type="text/javascript"></script>
+<title>Network Qscan | 1187008881.4</title>
+</head>
+<body>
+<button title="Return to top" class="btn-float shadow" id="top-btn"><i class="fas fa-arrow-up"></i></button>
+<nav class="navbar fixed-top navbar-expand-md navbar-network shadow-sm">
+<div class="container-fluid">
+<div class="navbar-brand border border-white rounded">Network &Omega;-scan</div>
+<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse justify-content-between">
+<ul class="nav navbar-nav mr-auto">
+<li class="nav-item navbar-text">
+1187008881.4
+</li>
+<li class="nav-item">
+<a href="#" class="nav-link">Summary</a>
+</li>
+<li class="nav-item dropdown">
+<a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown">H1</a>
+<div class="dropdown-menu dropdown-1-col shadow">
+<div class="row">
+<div class="col-sm-12 col-md-12">
+<h6 class="dropdown-header">Hanford Strain</h6>
+<a href="#h1-gds-calib_strain" class="dropdown-item">H1:GDS-CALIB_STRAIN</a>
+</div>
+</div>
+</div>
+</li>
+<li class="nav-item dropdown">
+<a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown">L1</a>
+<div class="dropdown-menu dropdown-1-col shadow">
+<div class="row">
+<div class="col-sm-12 col-md-12">
+<h6 class="dropdown-header">Livingston Strain</h6>
+<a href="#l1-gds-calib_strain" class="dropdown-item">L1:GDS-CALIB_STRAIN</a>
+</div>
+</div>
+</div>
+</li>
+<li class="nav-item dropdown">
+<a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown">V1</a>
+<div class="dropdown-menu dropdown-1-col shadow">
+<div class="row">
+<div class="col-sm-12 col-md-12">
+<h6 class="dropdown-header">Virgo Strain</h6>
+<a href="#v1-hrec_hoft_16384hz" class="dropdown-item">V1:Hrec_hoft_16384Hz</a>
+</div>
+</div>
+</div>
+</li>
+</ul>
+<ul class="nav navbar-nav">
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">Links</a>
+<div class="dropdown-menu dropdown-menu-right shadow">
+<h6 class="dropdown-header">Internal</h6>
+<a href="about" class="dropdown-item">About this page</a>
+<div class="dropdown-divider"></div>
+<h6 class="dropdown-header">External</h6>
+<a href="https://ldas-jobs.ligo.caltech.edu/~detchar/summary/day/20170817" class="dropdown-item" target="_blank">Network Summary Pages</a>
+<a href="https://alog.ligo-wa.caltech.edu/aLOG" class="dropdown-item" target="_blank">LHO Logbook</a>
+<a href="https://alog.ligo-la.caltech.edu/aLOG" class="dropdown-item" target="_blank">LLO Logbook</a>
+<a href="https://logbook.virgo-gw.eu/virgo" class="dropdown-item" target="_blank">Virgo Logbook</a>
+<a href="http://klog.icrr.u-tokyo.ac.jp/osl" class="dropdown-item" target="_blank">KAGRA Logbook</a>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="container">
+<div id="main">
+<div class="row">
+<div class="col-md-12">
+<h2>On the command-line</h2>
+<p>This page was generated with the following command-line call:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span>$ python -m gwdetchar.omega -i Network --output-dir ./GW170817 --config-file GW170817.ini --ignore-state-flags <span style="color: #666666">1187008881</span>.4
+</pre></div>
+
+<p>The install path used was <code>/home/detchar/.conda/envs/ligo-summary-3.9</code>.</p>
+<h2>Configuration files</h2>
+<p>The following INI-format configuration file(s) were passed on the comand-line and are reproduced here in full:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #008000; font-weight: bold">[H1]</span>
+<span style="color: #7D9029">name</span> <span style="color: #666666">=</span> <span style="color: #BA2121">Hanford Strain</span>
+<span style="color: #7D9029">q-range</span> <span style="color: #666666">=</span> <span style="color: #BA2121">93.1,93.1</span>
+<span style="color: #7D9029">frequency-range</span> <span style="color: #666666">=</span> <span style="color: #BA2121">20.0,Inf</span>
+<span style="color: #7D9029">resample</span> <span style="color: #666666">=</span> <span style="color: #BA2121">2048</span>
+<span style="color: #7D9029">frametype</span> <span style="color: #666666">=</span> <span style="color: #BA2121">H1_HOFT_C00</span>
+<span style="color: #7D9029">state-flag</span> <span style="color: #666666">=</span> <span style="color: #BA2121">H1:DMT-GRD_ISC_LOCK_NOMINAL:1</span>
+<span style="color: #7D9029">duration</span> <span style="color: #666666">=</span> <span style="color: #BA2121">64</span>
+<span style="color: #7D9029">fftlength</span> <span style="color: #666666">=</span> <span style="color: #BA2121">8</span>
+<span style="color: #7D9029">max-mismatch</span> <span style="color: #666666">=</span> <span style="color: #BA2121">0.35</span>
+<span style="color: #7D9029">snr-threshold</span> <span style="color: #666666">=</span> <span style="color: #BA2121">5.5</span>
+<span style="color: #7D9029">always-plot</span> <span style="color: #666666">=</span> <span style="color: #BA2121">True</span>
+<span style="color: #7D9029">plot-time-durations</span> <span style="color: #666666">=</span> <span style="color: #BA2121">1,4,16</span>
+<span style="color: #7D9029">channels</span> <span style="color: #666666">=</span> <span style="color: #BA2121">H1:GDS-CALIB_STRAIN</span>
+
+<span style="color: #008000; font-weight: bold">[L1]</span>
+<span style="color: #7D9029">name</span> <span style="color: #666666">=</span> <span style="color: #BA2121">Livingston Strain</span>
+<span style="color: #7D9029">q-range</span> <span style="color: #666666">=</span> <span style="color: #BA2121">93.1,93.1</span>
+<span style="color: #7D9029">frequency-range</span> <span style="color: #666666">=</span> <span style="color: #BA2121">20.0,Inf</span>
+<span style="color: #7D9029">resample</span> <span style="color: #666666">=</span> <span style="color: #BA2121">2048</span>
+<span style="color: #7D9029">frametype</span> <span style="color: #666666">=</span> <span style="color: #BA2121">L1_HOFT_C00</span>
+<span style="color: #7D9029">state-flag</span> <span style="color: #666666">=</span> <span style="color: #BA2121">L1:DMT-GRD_ISC_LOCK_NOMINAL:1</span>
+<span style="color: #7D9029">duration</span> <span style="color: #666666">=</span> <span style="color: #BA2121">64</span>
+<span style="color: #7D9029">fftlength</span> <span style="color: #666666">=</span> <span style="color: #BA2121">8</span>
+<span style="color: #7D9029">max-mismatch</span> <span style="color: #666666">=</span> <span style="color: #BA2121">0.35</span>
+<span style="color: #7D9029">snr-threshold</span> <span style="color: #666666">=</span> <span style="color: #BA2121">5.5</span>
+<span style="color: #7D9029">always-plot</span> <span style="color: #666666">=</span> <span style="color: #BA2121">True</span>
+<span style="color: #7D9029">plot-time-durations</span> <span style="color: #666666">=</span> <span style="color: #BA2121">1,4,16</span>
+<span style="color: #7D9029">channels</span> <span style="color: #666666">=</span> <span style="color: #BA2121">L1:GDS-CALIB_STRAIN</span>
+
+<span style="color: #008000; font-weight: bold">[V1]</span>
+<span style="color: #7D9029">name</span> <span style="color: #666666">=</span> <span style="color: #BA2121">Virgo Strain</span>
+<span style="color: #7D9029">q-range</span> <span style="color: #666666">=</span> <span style="color: #BA2121">93.1,93.1</span>
+<span style="color: #7D9029">frequency-range</span> <span style="color: #666666">=</span> <span style="color: #BA2121">20.0,Inf</span>
+<span style="color: #7D9029">resample</span> <span style="color: #666666">=</span> <span style="color: #BA2121">2048</span>
+<span style="color: #7D9029">frametype</span> <span style="color: #666666">=</span> <span style="color: #BA2121">V1Online</span>
+<span style="color: #7D9029">state-flag</span> <span style="color: #666666">=</span> <span style="color: #BA2121">V1:ITF_LOCKED:1</span>
+<span style="color: #7D9029">duration</span> <span style="color: #666666">=</span> <span style="color: #BA2121">64</span>
+<span style="color: #7D9029">fftlength</span> <span style="color: #666666">=</span> <span style="color: #BA2121">8</span>
+<span style="color: #7D9029">max-mismatch</span> <span style="color: #666666">=</span> <span style="color: #BA2121">0.35</span>
+<span style="color: #7D9029">snr-threshold</span> <span style="color: #666666">=</span> <span style="color: #BA2121">5.5</span>
+<span style="color: #7D9029">always-plot</span> <span style="color: #666666">=</span> <span style="color: #BA2121">True</span>
+<span style="color: #7D9029">plot-time-durations</span> <span style="color: #666666">=</span> <span style="color: #BA2121">1,4,16</span>
+<span style="color: #7D9029">channels</span> <span style="color: #666666">=</span> <span style="color: #BA2121">V1:Hrec_hoft_16384Hz</span>
+</pre></div>
+
+<h2 class="mt-4">Environment</h2><table class="table table-sm table-hover table-responsive" id="package-table"><caption>Table of packages installed in the production environment</caption><thead><tr><th scope="col">Name</th><th scope="col">Version</th><th scope="col">Channel</th><th scope="col">Build_String</th></tr></thead><tbody><tr><td>_libgcc_mutex</td><td>0.1</td><td>conda-forge</td><td>conda_forge</td></tr><tr><td>_openmp_mutex</td><td>4.5</td><td>conda-forge</td><td>1_gnu</td></tr><tr><td>argon2-cffi</td><td>20.1.0</td><td>conda-forge</td><td>py39hbd71b63_2</td></tr><tr><td>astropy</td><td>4.2</td><td>conda-forge</td><td>py39h3811e60_1</td></tr><tr><td>async_generator</td><td>1.10</td><td>conda-forge</td><td>py_0</td></tr><tr><td>attrs</td><td>20.3.0</td><td>conda-forge</td><td>pyhd3deb0d_0</td></tr><tr><td>backcall</td><td>0.2.0</td><td>conda-forge</td><td>pyh9f0ad1d_0</td></tr><tr><td>backports</td><td>1.0</td><td>conda-forge</td><td>py_2</td></tr><tr><td>backports.functools_lru_cache</td><td>1.6.1</td><td>conda-forge</td><td>py_0</td></tr><tr><td>beautifulsoup4</td><td>4.9.3</td><td>conda-forge</td><td>pyhb0f4dca_0</td></tr><tr><td>bleach</td><td>3.2.1</td><td>conda-forge</td><td>pyh9f0ad1d_0</td></tr><tr><td>boost-cpp</td><td>1.74.0</td><td>conda-forge</td><td>h9d3c048_1</td></tr><tr><td>boto</td><td>2.49.0</td><td>conda-forge</td><td>py_0</td></tr><tr><td>brotlipy</td><td>0.7.0</td><td>conda-forge</td><td>py39h38d8fee_1001</td></tr><tr><td>bzip2</td><td>1.0.8</td><td>conda-forge</td><td>h7f98852_4</td></tr><tr><td>c-ares</td><td>1.17.1</td><td>conda-forge</td><td>h36c2ea0_0</td></tr><tr><td>ca-certificates</td><td>2020.12.5</td><td>conda-forge</td><td>ha878542_0</td></tr><tr><td>cached-property</td><td>1.5.1</td><td>conda-forge</td><td>py_0</td></tr><tr><td>certifi</td><td>2020.12.5</td><td>conda-forge</td><td>py39hf3d152e_1</td></tr><tr><td>cffi</td><td>1.14.4</td><td>conda-forge</td><td>py39he32792d_1</td></tr><tr><td>cfitsio</td><td>3.470</td><td>conda-forge</td><td>hb418390_7</td></tr><tr><td>chardet</td><td>4.0.0</td><td>conda-forge</td><td>py39hf3d152e_1</td></tr><tr><td>click</td><td>7.1.2</td><td>conda-forge</td><td>pyh9f0ad1d_0</td></tr><tr><td>coloredlogs</td><td>15.0</td><td>conda-forge</td><td>py39hf3d152e_0</td></tr><tr><td>configobj</td><td>5.0.6</td><td>conda-forge</td><td>py_0</td></tr><tr><td>cryptography</td><td>3.3.1</td><td>conda-forge</td><td>py39h3da14fd_1</td></tr><tr><td>cycler</td><td>0.10.0</td><td>conda-forge</td><td>py_2</td></tr><tr><td>cyrus-sasl</td><td>2.1.27</td><td>conda-forge</td><td>h063b49f_1</td></tr><tr><td>dbus</td><td>1.13.6</td><td>conda-forge</td><td>hfdff14a_1</td></tr><tr><td>decorator</td><td>4.4.2</td><td>conda-forge</td><td>py_0</td></tr><tr><td>defusedxml</td><td>0.6.0</td><td>conda-forge</td><td>py_0</td></tr><tr><td>dqsegdb</td><td>1.6.1</td><td>conda-forge</td><td>py39hde42818_1</td></tr><tr><td>dqsegdb2</td><td>1.0.1</td><td>conda-forge</td><td>py_0</td></tr><tr><td>entrypoints</td><td>0.3</td><td>conda-forge</td><td>pyhd8ed1ab_1003</td></tr><tr><td>expat</td><td>2.2.9</td><td>conda-forge</td><td>he1b5a44_2</td></tr><tr><td>fftw</td><td>3.3.8</td><td>conda-forge</td><td>nompi_h8cb7ab2_1114</td></tr><tr><td>flask</td><td>0.12.4</td><td>conda-forge</td><td>py_0</td></tr><tr><td>flask-cache</td><td>0.13.1</td><td>conda-forge</td><td>py_1000</td></tr><tr><td>flask-sqlalchemy</td><td>2.4.0</td><td>conda-forge</td><td>py_0</td></tr><tr><td>fontconfig</td><td>2.13.1</td><td>conda-forge</td><td>h736d332_1003</td></tr><tr><td>freetype</td><td>2.10.4</td><td>conda-forge</td><td>h7ca028e_0</td></tr><tr><td>future</td><td>0.18.2</td><td>conda-forge</td><td>py39hf3d152e_3</td></tr><tr><td>gettext</td><td>0.19.8.1</td><td>conda-forge</td><td>h0b5b191_1005</td></tr><tr><td>glib</td><td>2.66.4</td><td>conda-forge</td><td>hcd2ae1e_1</td></tr><tr><td>gsl</td><td>2.6</td><td>conda-forge</td><td>he838d99_1</td></tr><tr><td>gst-plugins-base</td><td>1.14.5</td><td>conda-forge</td><td>h0935bb2_2</td></tr><tr><td>gstreamer</td><td>1.18.2</td><td>conda-forge</td><td>h3560a44_1</td></tr><tr><td>gwdatafind</td><td>1.0.4</td><td>conda-forge</td><td>pyh9f0ad1d_1</td></tr><tr><td>gwdetchar</td><td>2.0.3</td><td>conda-forge</td><td>pyhd8ed1ab_0</td></tr><tr><td>gwosc</td><td>0.5.6</td><td>conda-forge</td><td>py_0</td></tr><tr><td>gwpy</td><td>2.0.2</td><td>conda-forge</td><td>pyhd8ed1ab_0</td></tr><tr><td>gwsumm</td><td>2.0.1</td><td>conda-forge</td><td>pyhd8ed1ab_0</td></tr><tr><td>gwtrigfind</td><td>0.8.0</td><td>conda-forge</td><td>py_0</td></tr><tr><td>gwvet</td><td>0.1.4</td><td>conda-forge</td><td>py_0</td></tr><tr><td>h5py</td><td>3.1.0</td><td>conda-forge</td><td>nompi_py39h25020de_100</td></tr><tr><td>hdf5</td><td>1.10.6</td><td>conda-forge</td><td>nompi_h6a2412b_1114</td></tr><tr><td>healpy</td><td>1.14.0</td><td>conda-forge</td><td>py39h5cc0c36_2</td></tr><tr><td>humanfriendly</td><td>9.1</td><td>conda-forge</td><td>py39hf3d152e_0</td></tr><tr><td>hveto</td><td>2.0.1</td><td>conda-forge</td><td>pyhd8ed1ab_0</td></tr><tr><td>icu</td><td>68.1</td><td>conda-forge</td><td>h58526e2_0</td></tr><tr><td>idna</td><td>2.10</td><td>conda-forge</td><td>pyh9f0ad1d_0</td></tr><tr><td>importlib-metadata</td><td>3.4.0</td><td>conda-forge</td><td>py39hf3d152e_0</td></tr><tr><td>importlib_metadata</td><td>3.4.0</td><td>conda-forge</td><td>hd8ed1ab_0</td></tr><tr><td>iniconfig</td><td>1.1.1</td><td>conda-forge</td><td>pyh9f0ad1d_0</td></tr><tr><td>ipykernel</td><td>5.4.2</td><td>conda-forge</td><td>py39hef51801_0</td></tr><tr><td>ipython</td><td>7.19.0</td><td>conda-forge</td><td>py39hef51801_2</td></tr><tr><td>ipython_genutils</td><td>0.2.0</td><td>conda-forge</td><td>py_1</td></tr><tr><td>ipywidgets</td><td>7.6.3</td><td>conda-forge</td><td>pyhd3deb0d_0</td></tr><tr><td>itsdangerous</td><td>1.1.0</td><td>conda-forge</td><td>py_0</td></tr><tr><td>jedi</td><td>0.17.2</td><td>conda-forge</td><td>py39hf3d152e_1</td></tr><tr><td>jinja2</td><td>2.11.2</td><td>conda-forge</td><td>pyh9f0ad1d_0</td></tr><tr><td>joblib</td><td>1.0.0</td><td>conda-forge</td><td>pyhd8ed1ab_0</td></tr><tr><td>jpeg</td><td>9d</td><td>conda-forge</td><td>h36c2ea0_0</td></tr><tr><td>jsonschema</td><td>3.2.0</td><td>conda-forge</td><td>py_2</td></tr><tr><td>jupyter</td><td>1.0.0</td><td>conda-forge</td><td>py_2</td></tr><tr><td>jupyter_client</td><td>6.1.11</td><td>conda-forge</td><td>pyhd8ed1ab_1</td></tr><tr><td>jupyter_console</td><td>6.2.0</td><td>conda-forge</td><td>py_0</td></tr><tr><td>jupyter_core</td><td>4.7.0</td><td>conda-forge</td><td>py39hf3d152e_0</td></tr><tr><td>jupyterlab_pygments</td><td>0.1.2</td><td>conda-forge</td><td>pyh9f0ad1d_0</td></tr><tr><td>jupyterlab_widgets</td><td>1.0.0</td><td>conda-forge</td><td>pyhd8ed1ab_1</td></tr><tr><td>kiwisolver</td><td>1.3.1</td><td>conda-forge</td><td>py39h1a9c180_1</td></tr><tr><td>krb5</td><td>1.17.2</td><td>conda-forge</td><td>h926e7f8_0</td></tr><tr><td>lal</td><td>7.1.0</td><td>conda-forge</td><td>fftw_ha28fc39_100</td></tr><tr><td>lalapps</td><td>7.0.0</td><td>conda-forge</td><td>py39h7a3d968_1</td></tr><tr><td>lalburst</td><td>1.5.6</td><td>conda-forge</td><td>h64fcd52_0</td></tr><tr><td>lalframe</td><td>1.5.2</td><td>conda-forge</td><td>h36c2ea0_0</td></tr><tr><td>lalinference</td><td>2.0.5</td><td>conda-forge</td><td>nompi_h4677115_100</td></tr><tr><td>lalinspiral</td><td>2.0.0</td><td>conda-forge</td><td>h64fcd52_0</td></tr><tr><td>lalmetaio</td><td>2.0.0</td><td>conda-forge</td><td>h36c2ea0_0</td></tr><tr><td>lalpulsar</td><td>2.1.0</td><td>conda-forge</td><td>h2914cb3_1</td></tr><tr><td>lalsimulation</td><td>2.4.0</td><td>conda-forge</td><td>h8832763_0</td></tr><tr><td>lalsuite</td><td>6.80</td><td>conda-forge</td><td>pyhd3deb0d_0</td></tr><tr><td>lcms2</td><td>2.11</td><td>conda-forge</td><td>hcbb858e_1</td></tr><tr><td>ld_impl_linux-64</td><td>2.35.1</td><td>conda-forge</td><td>hea4e1c9_1</td></tr><tr><td>ldas-tools-al</td><td>2.6.4</td><td>conda-forge</td><td>he50ecb2_4</td></tr><tr><td>ldas-tools-framecpp</td><td>2.7.0</td><td>conda-forge</td><td>hc145dac_4</td></tr><tr><td>libblas</td><td>3.9.0</td><td>conda-forge</td><td>7_openblas</td></tr><tr><td>libcblas</td><td>3.9.0</td><td>conda-forge</td><td>7_openblas</td></tr><tr><td>libclang</td><td>11.0.0</td><td>conda-forge</td><td>default_ha5c780c_2</td></tr><tr><td>libcurl</td><td>7.71.1</td><td>conda-forge</td><td>hcdd3856_8</td></tr><tr><td>libedit</td><td>3.1.20191231</td><td>conda-forge</td><td>he28a2e2_2</td></tr><tr><td>libev</td><td>4.33</td><td>conda-forge</td><td>h516909a_1</td></tr><tr><td>libevent</td><td>2.1.10</td><td>conda-forge</td><td>hcdb4288_3</td></tr><tr><td>libffi</td><td>3.3</td><td>conda-forge</td><td>h58526e2_2</td></tr><tr><td>libframel</td><td>8.40.1</td><td>conda-forge</td><td>h516909a_2</td></tr><tr><td>libgcc-ng</td><td>9.3.0</td><td>conda-forge</td><td>h5dbcf3e_17</td></tr><tr><td>libgfortran-ng</td><td>9.3.0</td><td>conda-forge</td><td>he4bcb1c_17</td></tr><tr><td>libgfortran5</td><td>9.3.0</td><td>conda-forge</td><td>he4bcb1c_17</td></tr><tr><td>libglib</td><td>2.66.4</td><td>conda-forge</td><td>h164308a_1</td></tr><tr><td>libgomp</td><td>9.3.0</td><td>conda-forge</td><td>h5dbcf3e_17</td></tr><tr><td>libiconv</td><td>1.16</td><td>conda-forge</td><td>h516909a_0</td></tr><tr><td>liblapack</td><td>3.9.0</td><td>conda-forge</td><td>7_openblas</td></tr><tr><td>libllvm11</td><td>11.0.0</td><td>conda-forge</td><td>he513fc3_0</td></tr><tr><td>libnghttp2</td><td>1.41.0</td><td>conda-forge</td><td>h8cfc5f6_2</td></tr><tr><td>libntlm</td><td>1.4</td><td>conda-forge</td><td>h7f98852_1002</td></tr><tr><td>libopenblas</td><td>0.3.12</td><td>conda-forge</td><td>pthreads_h4812303_1</td></tr><tr><td>libpng</td><td>1.6.37</td><td>conda-forge</td><td>h21135ba_2</td></tr><tr><td>libpq</td><td>12.3</td><td>conda-forge</td><td>h255efa7_3</td></tr><tr><td>libsodium</td><td>1.0.18</td><td>conda-forge</td><td>h36c2ea0_1</td></tr><tr><td>libssh2</td><td>1.9.0</td><td>conda-forge</td><td>hab1572f_5</td></tr><tr><td>libstdcxx-ng</td><td>9.3.0</td><td>conda-forge</td><td>h2ae2ef3_17</td></tr><tr><td>libtiff</td><td>4.2.0</td><td>conda-forge</td><td>hdc55705_0</td></tr><tr><td>libuuid</td><td>2.32.1</td><td>conda-forge</td><td>h7f98852_1000</td></tr><tr><td>libwebp-base</td><td>1.1.0</td><td>conda-forge</td><td>h36c2ea0_3</td></tr><tr><td>libxcb</td><td>1.13</td><td>conda-forge</td><td>h7f98852_1003</td></tr><tr><td>libxkbcommon</td><td>1.0.3</td><td>conda-forge</td><td>he3ba5ed_0</td></tr><tr><td>libxml2</td><td>2.9.10</td><td>conda-forge</td><td>h72842e0_3</td></tr><tr><td>libxslt</td><td>1.1.33</td><td>conda-forge</td><td>h15afd5d_2</td></tr><tr><td>ligo-common</td><td>1.0.4</td><td>conda-forge</td><td>py_0</td></tr><tr><td>ligo-gracedb</td><td>2.7.5</td><td>conda-forge</td><td>pyhd8ed1ab_0</td></tr><tr><td>ligo-segments</td><td>1.2.0</td><td>conda-forge</td><td>py39h07f9747_3</td></tr><tr><td>ligotimegps</td><td>2.0.1</td><td>conda-forge</td><td>py_0</td></tr><tr><td>lscsoft-glue</td><td>2.0.0</td><td>conda-forge</td><td>py39h3811e60_4</td></tr><tr><td>lxml</td><td>4.6.2</td><td>conda-forge</td><td>py39h107f48f_1</td></tr><tr><td>lz4-c</td><td>1.9.3</td><td>conda-forge</td><td>h9c3ff4c_0</td></tr><tr><td>markdown</td><td>3.3.3</td><td>conda-forge</td><td>pyh9f0ad1d_0</td></tr><tr><td>markuppy</td><td>1.14</td><td>conda-forge</td><td>py_0</td></tr><tr><td>markupsafe</td><td>1.1.1</td><td>conda-forge</td><td>py39h3811e60_3</td></tr><tr><td>matplotlib-base</td><td>3.3.3</td><td>conda-forge</td><td>py39h98787fa_0</td></tr><tr><td>metaio</td><td>8.5.1</td><td>conda-forge</td><td>hed695b0_1001</td></tr><tr><td>mistune</td><td>0.8.4</td><td>conda-forge</td><td>py39h3811e60_1003</td></tr><tr><td>more-itertools</td><td>8.6.0</td><td>conda-forge</td><td>pyhd8ed1ab_0</td></tr><tr><td>mysql-common</td><td>8.0.22</td><td>conda-forge</td><td>ha770c72_1</td></tr><tr><td>mysql-libs</td><td>8.0.22</td><td>conda-forge</td><td>h1fd7589_1</td></tr><tr><td>nbclient</td><td>0.5.1</td><td>conda-forge</td><td>py_0</td></tr><tr><td>nbconvert</td><td>6.0.7</td><td>conda-forge</td><td>py39hf3d152e_3</td></tr><tr><td>nbformat</td><td>5.0.8</td><td>conda-forge</td><td>py_0</td></tr><tr><td>ncurses</td><td>6.2</td><td>conda-forge</td><td>h58526e2_4</td></tr><tr><td>nds2-client</td><td>0.16.6</td><td>conda-forge</td><td>hfdf2c5b_1</td></tr><tr><td>nest-asyncio</td><td>1.4.3</td><td>conda-forge</td><td>pyhd8ed1ab_0</td></tr><tr><td>notebook</td><td>6.1.6</td><td>conda-forge</td><td>py39hf3d152e_0</td></tr><tr><td>nspr</td><td>4.29</td><td>conda-forge</td><td>h9c3ff4c_1</td></tr><tr><td>nss</td><td>3.60</td><td>conda-forge</td><td>hb5efdd6_0</td></tr><tr><td>numpy</td><td>1.19.5</td><td>conda-forge</td><td>py39hdbf815f_1</td></tr><tr><td>olefile</td><td>0.46</td><td>conda-forge</td><td>pyh9f0ad1d_1</td></tr><tr><td>openssl</td><td>1.1.1i</td><td>conda-forge</td><td>h7f98852_0</td></tr><tr><td>oyaml</td><td>1.0</td><td>conda-forge</td><td>pyhd8ed1ab_0</td></tr><tr><td>packaging</td><td>20.8</td><td>conda-forge</td><td>pyhd3deb0d_0</td></tr><tr><td>pamela</td><td>1.0.0</td><td>conda-forge</td><td>py_0</td></tr><tr><td>pandas</td><td>1.2.0</td><td>conda-forge</td><td>py39hde0f152_0</td></tr><tr><td>pandoc</td><td>2.11.3.2</td><td>conda-forge</td><td>h7f98852_0</td></tr><tr><td>pandocfilters</td><td>1.4.2</td><td>conda-forge</td><td>py_1</td></tr><tr><td>parso</td><td>0.7.1</td><td>conda-forge</td><td>pyh9f0ad1d_0</td></tr><tr><td>pcre</td><td>8.44</td><td>conda-forge</td><td>he1b5a44_0</td></tr><tr><td>pexpect</td><td>4.8.0</td><td>conda-forge</td><td>pyh9f0ad1d_2</td></tr><tr><td>pickleshare</td><td>0.7.5</td><td>conda-forge</td><td>py_1003</td></tr><tr><td>pillow</td><td>8.1.0</td><td>conda-forge</td><td>py39h2bb83ca_1</td></tr><tr><td>pip</td><td>20.3.3</td><td>conda-forge</td><td>pyhd8ed1ab_0</td></tr><tr><td>pluggy</td><td>0.13.1</td><td>conda-forge</td><td>py39hf3d152e_4</td></tr><tr><td>prometheus_client</td><td>0.9.0</td><td>conda-forge</td><td>pyhd3deb0d_0</td></tr><tr><td>prompt-toolkit</td><td>3.0.10</td><td>conda-forge</td><td>pyha770c72_0</td></tr><tr><td>prompt_toolkit</td><td>3.0.10</td><td>conda-forge</td><td>hd8ed1ab_0</td></tr><tr><td>psycopg2</td><td>2.8.6</td><td>conda-forge</td><td>py39h3da14fd_1</td></tr><tr><td>pthread-stubs</td><td>0.4</td><td>conda-forge</td><td>h36c2ea0_1001</td></tr><tr><td>ptyprocess</td><td>0.7.0</td><td>conda-forge</td><td>pyhd3deb0d_0</td></tr><tr><td>py</td><td>1.10.0</td><td>conda-forge</td><td>pyhd3deb0d_0</td></tr><tr><td>pycondor</td><td>0.5.0</td><td>conda-forge</td><td>py_1</td></tr><tr><td>pycparser</td><td>2.20</td><td>conda-forge</td><td>pyh9f0ad1d_2</td></tr><tr><td>pyerfa</td><td>1.7.1.1</td><td>conda-forge</td><td>py39h3811e60_2</td></tr><tr><td>pygments</td><td>2.7.3</td><td>conda-forge</td><td>pyhd8ed1ab_0</td></tr><tr><td>pyopenssl</td><td>20.0.1</td><td>conda-forge</td><td>pyhd8ed1ab_0</td></tr><tr><td>pyparsing</td><td>2.4.7</td><td>conda-forge</td><td>pyh9f0ad1d_0</td></tr><tr><td>pyqt</td><td>5.12.3</td><td>conda-forge</td><td>py39hf3d152e_6</td></tr><tr><td>pyqt-impl</td><td>5.12.3</td><td>conda-forge</td><td>py39h0fcd23e_6</td></tr><tr><td>pyqt5-sip</td><td>4.19.18</td><td>conda-forge</td><td>py39he80948d_6</td></tr><tr><td>pyqtchart</td><td>5.12</td><td>conda-forge</td><td>py39h0fcd23e_6</td></tr><tr><td>pyqtwebengine</td><td>5.12.1</td><td>conda-forge</td><td>py39h0fcd23e_6</td></tr><tr><td>pyrsistent</td><td>0.17.3</td><td>conda-forge</td><td>py39h3811e60_2</td></tr><tr><td>pyrxp</td><td>2.2.0</td><td>conda-forge</td><td>py39h07f9747_1</td></tr><tr><td>pysocks</td><td>1.7.1</td><td>conda-forge</td><td>py39hf3d152e_3</td></tr><tr><td>pytest</td><td>6.2.1</td><td>conda-forge</td><td>py39hf3d152e_1</td></tr><tr><td>pytest-runner</td><td>5.2</td><td>conda-forge</td><td>py_0</td></tr><tr><td>python</td><td>3.9.1</td><td>conda-forge</td><td>hffdb5ce_3_cpython</td></tr><tr><td>python-dateutil</td><td>2.8.1</td><td>conda-forge</td><td>py_0</td></tr><tr><td>python-lal</td><td>7.1.0</td><td>conda-forge</td><td>fftw_py39hbbca8d9_100</td></tr><tr><td>python-lalburst</td><td>1.5.6</td><td>conda-forge</td><td>py39h16ac069_0</td></tr><tr><td>python-lalframe</td><td>1.5.2</td><td>conda-forge</td><td>py39h16ac069_0</td></tr><tr><td>python-lalinference</td><td>2.0.5</td><td>conda-forge</td><td>nompi_py39hc61b08a_100</td></tr><tr><td>python-lalinspiral</td><td>2.0.0</td><td>conda-forge</td><td>py39h16ac069_0</td></tr><tr><td>python-lalmetaio</td><td>2.0.0</td><td>conda-forge</td><td>py39h16ac069_0</td></tr><tr><td>python-lalpulsar</td><td>2.1.0</td><td>conda-forge</td><td>py39h7f7d743_1</td></tr><tr><td>python-lalsimulation</td><td>2.4.0</td><td>conda-forge</td><td>py39hce5d2b2_0</td></tr><tr><td>python-ldas-tools-al</td><td>2.6.7</td><td>conda-forge</td><td>py39h45ac560_3</td></tr><tr><td>python-ldas-tools-framecpp</td><td>2.6.9</td><td>conda-forge</td><td>py39hd56b5f2_2</td></tr><tr><td>python-ligo-lw</td><td>1.7.0</td><td>conda-forge</td><td>py39h07f9747_0</td></tr><tr><td>python-nds2-client</td><td>0.16.8</td><td>conda-forge</td><td>py39hd56b5f2_1</td></tr><tr><td>python-pegasus-wms</td><td>4.9.3</td><td>conda-forge</td><td>py_0</td></tr><tr><td>python_abi</td><td>3.9</td><td>conda-forge</td><td>1_cp39</td></tr><tr><td>pytz</td><td>2020.5</td><td>conda-forge</td><td>pyhd8ed1ab_0</td></tr><tr><td>pyyaml</td><td>5.3.1</td><td>conda-forge</td><td>py39h3811e60_2</td></tr><tr><td>pyzmq</td><td>20.0.0</td><td>conda-forge</td><td>py39hea8fd45_1</td></tr><tr><td>qt</td><td>5.12.9</td><td>conda-forge</td><td>h9d6b050_2</td></tr><tr><td>qtconsole</td><td>5.0.1</td><td>conda-forge</td><td>pyhd8ed1ab_0</td></tr><tr><td>qtpy</td><td>1.9.0</td><td>conda-forge</td><td>py_0</td></tr><tr><td>readline</td><td>8.0</td><td>conda-forge</td><td>he28a2e2_2</td></tr><tr><td>requests</td><td>2.25.1</td><td>conda-forge</td><td>pyhd3deb0d_0</td></tr><tr><td>scikit-learn</td><td>0.24.0</td><td>conda-forge</td><td>py39h4dfa638_0</td></tr><tr><td>scipy</td><td>1.6.0</td><td>conda-forge</td><td>py39hee8e79c_0</td></tr><tr><td>send2trash</td><td>1.5.0</td><td>conda-forge</td><td>py_0</td></tr><tr><td>setuptools</td><td>49.6.0</td><td>conda-forge</td><td>py39hf3d152e_3</td></tr><tr><td>six</td><td>1.15.0</td><td>conda-forge</td><td>pyh9f0ad1d_0</td></tr><tr><td>soupsieve</td><td>2.0.1</td><td>conda-forge</td><td>py_1</td></tr><tr><td>sqlalchemy</td><td>1.3.22</td><td>conda-forge</td><td>py39h3811e60_1</td></tr><tr><td>sqlite</td><td>3.34.0</td><td>conda-forge</td><td>h74cdb3f_0</td></tr><tr><td>terminado</td><td>0.9.2</td><td>conda-forge</td><td>py39hf3d152e_0</td></tr><tr><td>testpath</td><td>0.4.4</td><td>conda-forge</td><td>py_0</td></tr><tr><td>threadpoolctl</td><td>2.1.0</td><td>conda-forge</td><td>pyh5ca1d4c_0</td></tr><tr><td>tk</td><td>8.6.10</td><td>conda-forge</td><td>h21135ba_1</td></tr><tr><td>toml</td><td>0.10.2</td><td>conda-forge</td><td>pyhd8ed1ab_0</td></tr><tr><td>tornado</td><td>6.1</td><td>conda-forge</td><td>py39h3811e60_1</td></tr><tr><td>tqdm</td><td>4.56.0</td><td>conda-forge</td><td>pyhd8ed1ab_0</td></tr><tr><td>traitlets</td><td>5.0.5</td><td>conda-forge</td><td>py_0</td></tr><tr><td>tzdata</td><td>2020f</td><td>conda-forge</td><td>he74cb21_0</td></tr><tr><td>urllib3</td><td>1.26.2</td><td>conda-forge</td><td>pyhd8ed1ab_0</td></tr><tr><td>wcwidth</td><td>0.2.5</td><td>conda-forge</td><td>pyh9f0ad1d_2</td></tr><tr><td>webencodings</td><td>0.5.1</td><td>conda-forge</td><td>py_1</td></tr><tr><td>werkzeug</td><td>1.0.1</td><td>conda-forge</td><td>pyh9f0ad1d_0</td></tr><tr><td>wheel</td><td>0.36.2</td><td>conda-forge</td><td>pyhd3deb0d_0</td></tr><tr><td>widgetsnbextension</td><td>3.5.1</td><td>conda-forge</td><td>py39hf3d152e_4</td></tr><tr><td>xorg-libxau</td><td>1.0.9</td><td>conda-forge</td><td>h7f98852_0</td></tr><tr><td>xorg-libxdmcp</td><td>1.1.3</td><td>conda-forge</td><td>h7f98852_0</td></tr><tr><td>xz</td><td>5.2.5</td><td>conda-forge</td><td>h516909a_1</td></tr><tr><td>yaml</td><td>0.2.5</td><td>conda-forge</td><td>h516909a_0</td></tr><tr><td>zeromq</td><td>4.3.3</td><td>conda-forge</td><td>h58526e2_3</td></tr><tr><td>zipp</td><td>3.4.0</td><td>conda-forge</td><td>py_0</td></tr><tr><td>zlib</td><td>1.2.11</td><td>conda-forge</td><td>h516909a_1010</td></tr><tr><td>zstd</td><td>1.4.8</td><td>conda-forge</td><td>ha95c52a_1</td></tr></tbody></table><button class="btn btn-outline-secondary btn-table mt-2" data-table-id="package-table" data-filename="package-table.csv">Export to CSV</button>
+</div>
+</div>
+</div>
+</div>
+<footer class="footer">
+<div class="container">
+<div class="row">
+<div class="col-sm-3 icon-bar">
+<a href="https://github.com/gwdetchar/gwdetchar/tree/d1313420451627d4b89e467f001c3291800be57b" title="View gwdetchar-2.0.3 on GitHub" target="_blank"><i class="fas fa-code"></i></a>
+<a href="https://github.com/gwdetchar/gwdetchar/issues" title="Open an issue ticket" target="_blank"><i class="fas fa-ticket-alt"></i></a>
+<a href="https://attackofthecute.com/random.php" title="Take a break from science" target="_blank"><i class="fas fa-heartbeat"></i></a>
+</div>
+<div class="col-sm-6">
+<p>Created by alexander.urban at 17:23 CST on 23 January 2021</p>
+</div>
+</div>
+</div>
+</footer>
+</body>
+</html>
